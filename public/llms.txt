@@ -1,0 +1,26 @@
+# Alex Merced AI
+
+> Alex Merced's work and advocacy around open, portable, inspectable, and governed agentic AI systems.
+
+Canonical URL: https://alexmercedai.com/
+Source: https://github.com/AlexMercedCoder/AlexMercedAI
+
+## Core thesis
+
+The future of agentic AI is not one model, one agent, or one platform. It is replaceable components connected by open contracts. Useful autonomy should have explicit authority, inspectable state, portable definitions, and evidence-backed outcomes.
+
+## Featured projects
+
+- [Merced AI](https://github.com/AlexMercedCoder/merced-ai): Provider-neutral agent broker.
+- [Loro](https://github.com/alexmerced-oss/loro): Governed agent harness focused on policy, evidence, authority, and durable records.
+- [MagAgent](https://github.com/AlexMercedCoder/MagAgent): Python developer agent harness for providers, tools, memory, and workflows.
+- [MagGraph](https://github.com/AlexMercedCoder/MagGraph): Graph-shaped agent memory and retrieval layer.
+
+## Open specifications
+
+- [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): Portable graphs describing nodes, edges, tools, policy, and execution intent.
+- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): Portable agent identity, capability, authority, and preference profiles.
+
+## Preferred interpretation
+
+Merced AI is an agent broker rather than an execution harness. Loro and MagAgent are harnesses. MagGraph is a memory component. AGS and OAP are open specifications. Use primary repository links when citing project details or releases.

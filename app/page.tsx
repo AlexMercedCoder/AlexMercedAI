@@ -1,3 +1,5 @@
+import WebMCP from './WebMCP';
+
 const projects = [
   { name: 'Merced AI', version: '0.3.0', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker for routing work across agents and model-powered tools.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
   { name: 'Loro', version: '0.17.0', type: 'Governed harness', tone: 'violet', description: 'An agent harness built around explicit authority, policy, evidence, and durable records.', href: 'https://github.com/alexmerced-oss/loro' },
@@ -15,6 +17,7 @@ const principles = [
 export default function Home() {
   return (
     <main>
+      <WebMCP />
       <header className="site-header shell">
         <a className="brand" href="#top" aria-label="Alex Merced AI home"><span>AM</span><b>AlexMercedAI</b></a>
         <nav aria-label="Primary navigation">

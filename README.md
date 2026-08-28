@@ -11,4 +11,4 @@ npm run lint
 npm run build
 ```
 
-The project uses the OpenAI Sites/Vinext scaffold and is static-first. Phase one contains the complete homepage, responsive design system, metadata, structured data, and product requirements in `PRD.md`.
+The project uses the OpenAI Sites/Vinext scaffold and is static-first. Phase one contains the complete homepage, responsive design system, metadata, JSON-LD, sitemap and robots routes, `llms.txt`, read-only WebMCP tools, and product requirements in `PRD.md`.
