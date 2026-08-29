@@ -4,6 +4,7 @@ import WebMCP from './WebMCP';
 import { SiteHeader } from './_components/SiteHeader';
 import { NewsletterBand, SiteFooter } from './_components/SiteFooter';
 import { aiBooks } from './_data/books';
+import { kbManifest } from './_data/kb-manifest';
 
 const projects = [
   { name: 'Merced AI', slug: 'merced-ai', version: '0.3.0', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker for routing work across agents and model-powered tools.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
@@ -19,22 +20,10 @@ const principles: [string, string, string, string][] = [
   ['04', 'Claims need evidence', 'Useful autonomy comes from traceable decisions, observable work, and verifiable outcomes.', 'claims-need-evidence'],
 ];
 
-const booksStructuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'AI and agentic systems books by Alex Merced',
-  numberOfItems: aiBooks.length,
-  itemListElement: aiBooks.map((book, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    item: { '@type': 'Book', name: book.title, description: book.description, url: book.href, author: { '@type': 'Person', name: 'Alex Merced' } },
-  })),
-};
-
 export default function Home() {
   return (
     <main>
-      <WebMCP />
+      <WebMCP knowledgeBase={kbManifest} />
       <SiteHeader />
 
       <section className="hero shell" id="top">
@@ -64,7 +53,7 @@ export default function Home() {
         <div className="project-grid">{projects.map((project) => <Link className={`project-card ${project.tone}`} href={`/knowledge-base/${project.slug}`} key={project.name}><div className="card-meta"><span>{project.type}</span><span>v{project.version}</span></div><h3>{project.name}</h3><p>{project.description}</p><span className="card-link">Read the explainer →</span></Link>)}</div>
       </section>
 
-      <section className="standards">
+      <section className="standards" id="standards">
         <div className="shell standards-grid"><div><p className="section-kicker">OPEN CONTRACTS</p><h2>Standards make ecosystems possible.</h2><p>Open software is strongest when its components share a durable language. These specifications focus on graph-shaped work and portable agent identity.</p><Link className="kb-link" href="/knowledge-base/open-contracts">Read about open contracts →</Link></div><div className="standard-list"><Link href="/knowledge-base/agentic-graph-specification"><span className="standard-mark">AGS</span><div><b>Agentic Graph Specification</b><p>A portable document format for defining nodes, edges, tools, policy, and execution intent.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/open-agent-profile"><span className="standard-mark">OAP</span><div><b>Open Agent Profile</b><p>A vendor-neutral profile for expressing an agent’s identity, capabilities, authority, and preferences.</p></div><span>1.0 →</span></Link></div></div>
       </section>
 
@@ -76,7 +65,7 @@ export default function Home() {
       <section className="books" id="books">
         <div className="shell">
           <div className="books-heading">
-            <div><p className="section-kicker">THE AI BOOKSHELF / 31 TITLES</p><h2>Ideas made<br />practical.</h2></div>
+            <div><p className="section-kicker">THE AI BOOKSHELF / {aiBooks.length} TITLES</p><h2>Ideas made<br />practical.</h2></div>
             <div><p>Explore Alex Merced’s nonfiction books on AI engineering, agentic systems, governance, evaluation, open models, semantic context, and the data foundations beneath modern AI.</p><a href="https://books.alexmerced.com" rel="noopener">Browse the complete book catalog ↗</a></div>
           </div>
           <div className="book-shelf" role="list" aria-label="AI books by Alex Merced">
@@ -93,11 +82,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about"><div className="shell about-grid"><div className="portrait">AM</div><div><p className="section-kicker">ABOUT ALEX</p><h2>Builder, educator,<br />open-systems advocate.</h2><p>Alex Merced works across data infrastructure, developer education, and agentic AI. His focus is making complex systems legible, and giving builders open foundations they can adapt, audit, and own.</p><div className="about-links"><a href="https://www.alexmerced.com">AlexMerced.com ↗</a><a href="https://openagenticplatform.com">OpenAgenticPlatform.com ↗</a><a href="https://www.alexmerceddata.com">Data work ↗</a><a href="https://www.alexmercedcoder.dev">Developer work ↗</a></div></div></div></section>
+      <section className="about" id="about"><div className="shell about-grid"><div className="portrait">AM</div><div><p className="section-kicker">ABOUT ALEX</p><h2>Builder, educator,<br />open-systems advocate.</h2><p>Alex Merced works across data infrastructure, developer education, and agentic AI. His focus is making complex systems legible, and giving builders open foundations they can adapt, audit, and own.</p><div className="about-links"><a href="https://www.alexmerced.com">AlexMerced.com ↗</a><a href="https://openagenticplatform.com">OpenAgenticPlatform.com ↗</a><a href="https://www.alexmerceddata.com">Data work ↗</a><a href="https://www.alexmercedcoder.dev">Developer work ↗</a></div></div></div></section>
 
       <NewsletterBand />
       <SiteFooter />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(booksStructuredData) }} />
     </main>
   );
 }
