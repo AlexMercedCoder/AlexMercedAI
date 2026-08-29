@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/', types: { 'text/plain': '/llms.txt' } },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 } },
   referrer: 'origin-when-cross-origin',
-  openGraph: { title: 'Alex Merced AI', description: 'Open components. Explicit contracts. Accountable agents.', url: 'https://alexmercedai.com', siteName: 'Alex Merced AI', type: 'website', images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Alex Merced AI — open components, accountable agents' }] },
+  openGraph: { title: 'Alex Merced AI', description: 'Open components. Explicit contracts. Accountable agents.', url: 'https://alexmercedai.com', siteName: 'Alex Merced AI', type: 'website', images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Alex Merced AI: open components, accountable agents' }] },
   twitter: { card: 'summary_large_image', title: 'Alex Merced AI', description: 'Open components. Explicit contracts. Accountable agents.', images: ['/og.png'] },
 };
 

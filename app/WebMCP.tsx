@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { aiBooks } from './_data/books';
 
 type ToolDefinition = {
   name: string;
@@ -63,6 +64,18 @@ export default function WebMCP() {
           { name: 'Agentic Graph Specification', shortName: 'AGS', documentVersion: '1.0', supportVersion: '1.0.1', purpose: 'Portable agentic graph documents.', url: 'https://github.com/AlexMercedCoder/agentic-graph-spec' },
           { name: 'Open Agent Profile', shortName: 'OAP', documentVersion: '1.0', supportVersion: '1.0.1', purpose: 'Portable agent identity, capabilities, authority, and preferences.', url: 'https://github.com/alexmerced-oss/open-agent-profile' },
         ] }),
+        annotations: { readOnlyHint: true, untrustedContentHint: false },
+      },
+      {
+        name: 'list_alex_merced_ai_books',
+        title: 'List Alex Merced AI books',
+        description: 'Returns the nonfiction AI and agentic-systems books featured on AlexMercedAI.com.',
+        inputSchema: noInput,
+        execute: async () => ({
+          count: aiBooks.length,
+          books: aiBooks.map(({ title, description, href }) => ({ title, description, url: href })),
+          completeCatalog: 'https://books.alexmerced.com/',
+        }),
         annotations: { readOnlyHint: true, untrustedContentHint: false },
       },
     ];

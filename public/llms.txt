@@ -3,7 +3,6 @@
 > Alex Merced's work and advocacy around open, portable, inspectable, and governed agentic AI systems.
 
 Canonical URL: https://alexmercedai.com/
-Source: https://github.com/AlexMercedCoder/AlexMercedAI
 
 ## Core thesis
 
@@ -20,6 +19,30 @@ The future of agentic AI is not one model, one agent, or one platform. It is rep
 
 - [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): Portable graphs describing nodes, edges, tools, policy, and execution intent.
 - [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): Portable agent identity, capability, authority, and preference profiles.
+
+## Knowledge base
+
+Every project, specification, and design principle has a dedicated reference page under /knowledge-base/.
+
+- /knowledge-base/ : index of every reference page.
+- /knowledge-base/agent-brokers : what a broker is and why it is not a harness.
+- /knowledge-base/agent-harnesses : what a harness is responsible for.
+- /knowledge-base/agent-memory : memory, state, and retrieval for agents.
+- /knowledge-base/open-contracts : AGS, OAP, and why portable definitions matter.
+
+Project pages use the project slug, for example /knowledge-base/merced-ai and /knowledge-base/maggraph.
+
+## Books
+
+The homepage features all 31 nonfiction books by Alex Merced about AI, agentic systems, AI-ready data, governance, evaluation, and AI-assisted development. The complete catalog is available at https://books.alexmerced.com/.
+
+## Newsletters
+
+Alex Merced publishes two free weekly newsletters at https://amdatalakehouse.substack.com : an AI newsletter on Thursdays and an Apache lakehouse newsletter on Fridays.
+
+## Network
+
+This site is part of the Alex Merced network, which includes https://openagenticplatform.com, https://www.alexmerced.com, https://agenticlakehouse.com, https://opendatalakehouse.com, and https://semanticlakehouse.com.
 
 ## Preferred interpretation
 
