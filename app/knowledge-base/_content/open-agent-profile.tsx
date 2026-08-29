@@ -44,7 +44,7 @@ function Body() {
       </p>
       <p>
         A harness reads the file to start a fresh session on demand and writes an updated revision when that session
-        ends. Nothing needs to stay resident. It is Apache licensed, at version 1.0 with maintenance releases, and
+        ends. Nothing needs to stay resident. It is Apache licensed, at version 1.0 with support libraries at 1.0.4, and
         ships schemas, a conformance suite, and support libraries in several languages.
       </p>
 

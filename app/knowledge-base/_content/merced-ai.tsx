@@ -18,6 +18,7 @@ export const article: Article = {
     { id: 'projection', label: 'Projection reports' },
     { id: 'planning', label: 'Read-only graph planning' },
     { id: 'conversations', label: 'Sessions and group conversations' },
+    { id: 'run-inspection', label: 'Workspace context and run inspection' },
     { id: 'workflow', label: 'What using it looks like' },
     { id: 'when', label: 'When it earns its place' },
     { id: 'limits', label: 'Limits and honest caveats' },
@@ -202,6 +203,31 @@ function Body() {
         system being inconsistent. When three bots with different tool access disagree, that is information. And an
         implementer with write access and a reviewer with read-only access are genuinely different authority
         profiles, which collapsing into one agent would defeat.
+      </p>
+
+      <h2 id="run-inspection">Workspace context and run inspection</h2>
+      <p>
+        Version 0.4.0 adds the two things a broker needs once people actually route real work through it: a way to
+        hand the target harness the right context, and a way to see what came back.
+      </p>
+      <p>
+        The workspace context picker handles text, binary, and image context through bounded browser uploads, with
+        inline and path delivery manifests and protections against traversal into internal state. The delivery
+        manifest is the part I would highlight: because the broker does not execute anything, it has to describe
+        precisely what it handed over, and a manifest is that description.
+      </p>
+      <p>
+        Run telemetry is normalized and durable, with recent-run inspection, elapsed time, partial-failure
+        summaries, opt-in completion notifications, and copyable handoffs to the active harness. Normalized is the
+        operative word. Each harness reports differently, and a broker that passes those differences straight
+        through gives you a pile of incompatible logs rather than one record. Normalizing them is the only way the
+        broker can answer what a run cost and how it ended across executors.
+      </p>
+      <p>
+        Partial failure deserves its own mention. A run that half-succeeded is the case brokers handle worst,
+        because the harness reports completion and the caller has no way to know a step failed inside. Surfacing it
+        as a distinct state rather than folding it into success or failure is a small correctness win that shows up
+        constantly in practice.
       </p>
 
       <h2 id="workflow">What using it looks like</h2>

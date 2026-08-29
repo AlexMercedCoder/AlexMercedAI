@@ -7,9 +7,9 @@ import { aiBooks } from './_data/books';
 import { kbManifest } from './_data/kb-manifest';
 
 const projects = [
-  { name: 'Merced AI', slug: 'merced-ai', version: '0.3.0', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker for routing work across agents and model-powered tools.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
-  { name: 'Loro', slug: 'loro', version: '0.17.0', type: 'Governed harness', tone: 'violet', description: 'An agent harness built around explicit authority, policy, evidence, and durable records.', href: 'https://github.com/alexmerced-oss/loro' },
-  { name: 'MagAgent', slug: 'magagent', version: '0.99.0', type: 'Developer harness', tone: 'orange', description: 'A practical Python agent framework for composing providers, tools, memory, and workflows.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
+  { name: 'Merced AI', slug: 'merced-ai', version: '0.4.0', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker for routing work across agents and model-powered tools.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
+  { name: 'Loro', slug: 'loro', version: '0.18.0', type: 'Governed harness', tone: 'violet', description: 'An agent harness built around explicit authority, policy, evidence, and durable records.', href: 'https://github.com/alexmerced-oss/loro' },
+  { name: 'MagAgent', slug: 'magagent', version: '1.0.0', type: 'Developer harness', tone: 'orange', description: 'A practical Python agent framework for composing providers, tools, memory, and workflows.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
   { name: 'MagGraph', slug: 'maggraph', version: '0.4.1', type: 'Agent memory', tone: 'green', description: 'A graph-shaped memory layer for representing relationships, context, and retrieval paths.', href: 'https://github.com/AlexMercedCoder/MagGraph' },
 ];
 

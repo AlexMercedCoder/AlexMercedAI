@@ -20,6 +20,7 @@ export const article: Article = {
     { id: 'audit', label: 'Audit is a delivery problem' },
     { id: 'artifacts', label: 'Artifacts with provenance' },
     { id: 'standards', label: 'Standards, adopted carefully' },
+    { id: 'workspace', label: 'The 0.18 workspace and run center' },
     { id: 'gateways', label: 'Gateways widen the perimeter' },
     { id: 'who-for', label: 'Who this is for' },
     { id: 'limits', label: 'Limits and honest caveats' },
@@ -231,6 +232,37 @@ function Body() {
       <p>
         The pattern across all four is the same: adopt the portable format, and do not let adopting it become a route
         around the authority model.
+      </p>
+
+      <h2 id="workspace">The 0.18 workspace and run center</h2>
+      <p>
+        Version 0.18.0 closes the main desktop-workspace gaps around the governed runtime, and the framing in the
+        release notes is the interesting part: it does this without turning the web UI into an authority boundary or
+        a general-purpose editor.
+      </p>
+      <p>
+        That constraint is doing real work. The temptation with a local UI is to let it read anything, run anything,
+        and become the place where policy is decided. Loro instead added workspace file context, bounded uploads,
+        authenticated artifact previews and downloads, and read-only staged and unstaged Git review, while keeping
+        one isolated workspace and policy root per server. The UI shows you the governed runtime; it does not become
+        a second way around it.
+      </p>
+      <p>
+        The run center spans conversations and Agentic Graph runs together, with usage and approval visibility,
+        opt-in completion notifications, and persistent governed graph schedules. Approvals appearing in the same
+        place as the work is the detail that matters: an approval queue you have to go looking for is an approval
+        queue that gets rubber-stamped.
+      </p>
+      <p>
+        Group execution arrived here too, in three modes. Sequential runs agents one after another. Parallel runs
+        them concurrently. Coordinator puts one agent in charge of dispatching to others. Each mode queues approvals
+        independently, which is the part that keeps a parallel fan-out from turning into a pile of undifferentiated
+        confirmation prompts.
+      </p>
+      <p>
+        There is also an effective inventory of MCP servers, protocol extensions, and skills, with no credential
+        disclosure, and adjacent-project discovery with copyable per-project launch commands. Both are answers to
+        the same question a governed system should be able to answer on demand: what is actually configured here.
       </p>
 
       <h2 id="gateways">Gateways widen the perimeter</h2>

@@ -49,9 +49,9 @@ export default function WebMCP({ knowledgeBase = [] }: { knowledgeBase?: KbEntry
         description: 'Returns the featured open agentic AI projects with their role, version, summary, and primary repository URL.',
         inputSchema: noInput,
         execute: async () => ({ projects: [
-          { name: 'Merced AI', version: '0.3.0', role: 'agent broker', url: 'https://github.com/AlexMercedCoder/merced-ai' },
-          { name: 'Loro', version: '0.17.0', role: 'governed agent harness', url: 'https://github.com/alexmerced-oss/loro' },
-          { name: 'MagAgent', version: '0.99.0', role: 'developer agent harness', url: 'https://github.com/AlexMercedCoder/MagAgent' },
+          { name: 'Merced AI', version: '0.4.0', role: 'agent broker', url: 'https://github.com/AlexMercedCoder/merced-ai' },
+          { name: 'Loro', version: '0.18.0', role: 'governed agent harness', url: 'https://github.com/alexmerced-oss/loro' },
+          { name: 'MagAgent', version: '1.0.0', role: 'developer agent harness', url: 'https://github.com/AlexMercedCoder/MagAgent' },
           { name: 'MagGraph', version: '0.4.1', role: 'agent memory', url: 'https://github.com/AlexMercedCoder/MagGraph' },
         ] }),
         annotations: { readOnlyHint: true, untrustedContentHint: false },
@@ -62,8 +62,8 @@ export default function WebMCP({ knowledgeBase = [] }: { knowledgeBase?: KbEntry
         description: 'Returns the AGS and OAP open specifications, their purpose, current document/support versions, and repository URLs.',
         inputSchema: noInput,
         execute: async () => ({ standards: [
-          { name: 'Agentic Graph Specification', shortName: 'AGS', documentVersion: '1.0', supportVersion: '1.0.1', purpose: 'Portable agentic graph documents.', url: 'https://github.com/AlexMercedCoder/agentic-graph-spec' },
-          { name: 'Open Agent Profile', shortName: 'OAP', documentVersion: '1.0', supportVersion: '1.0.1', purpose: 'Portable agent identity, capabilities, authority, and preferences.', url: 'https://github.com/alexmerced-oss/open-agent-profile' },
+          { name: 'Agentic Graph Specification', shortName: 'AGS', documentVersion: '1.0', supportVersion: '1.0.4', purpose: 'Portable agentic graph documents.', url: 'https://github.com/AlexMercedCoder/agentic-graph-spec' },
+          { name: 'Open Agent Profile', shortName: 'OAP', documentVersion: '1.0', supportVersion: '1.0.4', purpose: 'Portable agent identity, capabilities, authority, and preferences.', url: 'https://github.com/alexmerced-oss/open-agent-profile' },
         ] }),
         annotations: { readOnlyHint: true, untrustedContentHint: false },
       },

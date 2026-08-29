@@ -19,6 +19,7 @@ export const article: Article = {
     { id: 'graphs', label: 'Graphs for planned work' },
     { id: 'sandboxes', label: 'Sandboxes and scoping' },
     { id: 'background', label: 'Background work' },
+    { id: 'run-center', label: 'The 1.0 run center' },
     { id: 'evals', label: 'Evaluation built in' },
     { id: 'daily-use', label: 'What daily use actually looks like' },
     { id: 'who-for', label: 'Who this is for' },
@@ -224,6 +225,40 @@ function Body() {
         what was written down.
       </p>
 
+      <h2 id="run-center">The 1.0 run center</h2>
+      <p>
+        The 1.0 release is mostly about the local web UI, and about one idea in particular: that work an agent is
+        doing should be visible and controllable while it is happening, not only after it stops.
+      </p>
+      <p>
+        The run center gathers chat runs, graph history, and durable execution tasks into one view, with
+        pause, resume, cancel, and retry controls, completion summaries, and opt-in browser notifications. Governed
+        interval schedules let a graph run on a cadence rather than only on demand.
+      </p>
+      <p>
+        That matters more than a feature list suggests. The background daemon has been able to queue work for
+        several releases, and queued work you cannot watch is queued work you do not trust. Being able to see a task
+        mid-flight, read its summary, and cancel it without losing everything before that point is what makes
+        delegating longer work comfortable rather than nerve-racking.
+      </p>
+      <p>
+        Alongside it, 1.0 adds workspace context that is deliberately bounded: confined file and artifact discovery,
+        bounded previews and uploads, message context selection, Git diffs with explicit staging, branch and
+        worktree management, and a shell-free command console. The confinement is the point. A web UI that can read
+        any path on the machine is a new authority boundary, and Loro and MagAgent both took the position that the
+        UI should not become one.
+      </p>
+      <p>
+        An extensions surface lists integrity-checked plugins, discovered skills, configured MCP server names, and
+        tool-backend readiness, without returning credentials. That last clause is the part worth copying: an
+        inventory view is useful precisely because it answers what is configured, and it does not need to answer
+        what the secrets are.
+      </p>
+      <p>
+        The security boundary stayed where it was: loopback only, token and CSRF protected, with explicit
+        confirmation on destructive actions and limits on uploads, context, and output size.
+      </p>
+
       <h2 id="evals">Evaluation built in</h2>
       <p>
         MagAgent includes isolated evaluation suites with independent validators, timing and token metrics, and
@@ -296,7 +331,7 @@ function Body() {
       <ul>
         <li><b>Memory needs curation.</b> A graph that accumulates everything degrades recall. Explicit promotion is the mechanism, and someone has to use it.</li>
         <li><b>Memory is a data store.</b> Whatever the agent learned is written down, including anything sensitive it encountered. Treat the repository accordingly.</li>
-        <li><b>Pre-1.0 surfaces move.</b> The project is approaching 1.0 and some integration surfaces are still stabilizing. The roadmap says which.</li>
+        <li><b>1.0 is recent.</b> MagAgent reached 1.0.0 in August 2026. The interfaces it commits to are settled; the local web UI is the newest surface and the one most likely to keep moving.</li>
         <li><b>Shell access is the boundary question.</b> As with any capable harness, running commands means the agent can do what you can, unless sandboxed.</li>
         <li><b>Breadth has a cost.</b> A large tool surface makes tool selection matter. Scope per profile.</li>
         <li><b>Language servers need a working project setup.</b> The symbol tooling is only as good as the project configuration underneath.</li>

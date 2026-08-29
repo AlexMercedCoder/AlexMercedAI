@@ -35,14 +35,16 @@ ${section('Core thesis', [
   'evidence-backed outcomes.',
 ])}
 ${section('Featured projects', [
-  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai): provider-neutral agent broker.',
-  '- [Loro](https://github.com/alexmerced-oss/loro): governed agent harness built on policy, evidence, authority, and durable records.',
-  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent): Python developer agent harness for providers, tools, memory, and workflows.',
-  '- [MagGraph](https://github.com/AlexMercedCoder/MagGraph): graph-shaped agent memory and retrieval layer.',
+  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.4.0: provider-neutral agent broker over installed harnesses.',
+  '- [Loro](https://github.com/alexmerced-oss/loro) 0.18.0: governed agent harness built on identity, policy, approvals, evidence, and delivered audit.',
+  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.0.0: Python developer agent harness with persistent graph memory, a broad tool surface, and a local run center.',
+  '- [MagGraph](https://github.com/AlexMercedCoder/MagGraph) 0.4.1: graph-shaped agent memory stored as Markdown in Git.',
+  '',
+  'Versions move; check each repository for the current release.',
 ])}
 ${section('Open specifications', [
-  '- [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): portable graphs of nodes, edges, tools, policy, and execution intent.',
-  '- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): portable agent identity, capability, authority, and learned state.',
+  '- [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): portable graphs of nodes, edges, tools, policy, and execution intent. Specification 1.0, support libraries 1.0.4.',
+  '- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): portable agent identity, capability, authority, and learned state. Specification 1.0, support libraries 1.0.4.',
 ])}
 ## Knowledge base
 
