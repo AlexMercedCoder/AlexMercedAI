@@ -38,6 +38,7 @@ ${section('Featured projects', [
   '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.4.0: provider-neutral agent broker over installed harnesses.',
   '- [Loro](https://github.com/alexmerced-oss/loro) 0.18.0: governed agent harness built on identity, policy, approvals, evidence, and delivered audit.',
   '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.0.0: Python developer agent harness with persistent graph memory, a broad tool surface, and a local run center.',
+  '- [Mag Command Center](https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.1) 1.0.0-rc.1: cross-platform Tauri desktop workspace for MagAgent, with project context and Git, OAP profiles, AGS graph authoring and governed runs, group sessions, tools, and extensions.',
   '- [MagGraph](https://github.com/AlexMercedCoder/MagGraph) 0.4.1: graph-shaped agent memory stored as Markdown in Git.',
   '',
   'Versions move; check each repository for the current release.',

@@ -30,7 +30,7 @@ export const article: Article = {
     { label: 'MagAgent on GitHub', href: 'https://github.com/AlexMercedCoder/MagAgent', note: 'Source, documentation, and the roadmap toward 1.0.' },
     { label: 'mag-agent on PyPI', href: 'https://pypi.org/project/mag-agent/', note: 'Installation and release history.' },
     { label: 'MagGraph', href: 'https://github.com/AlexMercedCoder/MagGraph', note: 'The graph memory layer underneath.' },
-    { label: 'Mag Command Center', href: 'https://github.com/AlexMercedCoder/MagCommandCenter', note: 'The desktop application for MagAgent projects, chat, memory, and configuration.' },
+    { label: 'Download Mag Command Center 1.0.0-rc.1', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.1', note: 'The tested desktop release candidate for Linux, macOS, and Windows.' },
     { label: 'Open Agent Profile', href: 'https://github.com/alexmerced-oss/open-agent-profile', note: 'The profile specification MagAgent implements at Level 3.' },
   ],
   related: ['agent-harnesses', 'maggraph', 'loro'],
@@ -257,6 +257,14 @@ function Body() {
       <p>
         The security boundary stayed where it was: loopback only, token and CSRF protected, with explicit
         confirmation on destructive actions and limits on uploads, context, and output size.
+      </p>
+      <p>
+        <b>Mag Command Center 1.0.0-rc.1</b> packages these operating ideas as a native desktop workspace for Linux,
+        macOS, and Windows. The release candidate adds bounded project context and uploads, Git staging and worktree
+        controls, sequential and parallel profile groups, governed schedules, a searchable command palette, tools
+        and extension diagnostics, session fork and export, appearance and accessibility controls, and lazy-loaded
+        workspaces. Its cross-platform installer matrix, browser tests, Rust tests, security checks, and software
+        bill of materials are published with the release.
       </p>
 
       <h2 id="evals">Evaluation built in</h2>
