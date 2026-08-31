@@ -207,7 +207,7 @@ function Body() {
 
       <h2 id="run-inspection">Workspace context and run inspection</h2>
       <p>
-        Version 0.4.0 adds the two things a broker needs once people actually route real work through it: a way to
+        Version 0.5.1 adds durable approval-aware sessions and the UI lifecycle a broker needs once people route real work through it: a way to
         hand the target harness the right context, and a way to see what came back.
       </p>
       <p>

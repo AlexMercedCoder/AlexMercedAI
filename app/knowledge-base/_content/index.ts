@@ -11,6 +11,7 @@ import { article as magagent } from './magagent';
 import { article as maggraph } from './maggraph';
 import { article as agenticGraphSpecification } from './agentic-graph-specification';
 import { article as openAgentProfile } from './open-agent-profile';
+import { article as agentApprovalInterchangeSpecification } from './agent-approval-interchange-specification';
 
 import { article as portableByDefault } from './portable-by-default';
 import { article as explicitAuthority } from './explicit-authority';
@@ -31,6 +32,7 @@ export const articles: Article[] = [
   maggraph,
   agenticGraphSpecification,
   openAgentProfile,
+  agentApprovalInterchangeSpecification,
 
   portableByDefault,
   explicitAuthority,

@@ -9,7 +9,7 @@ import { articles, conceptArticles, glossaryArticles, layerArticles, technologie
 export const metadata: Metadata = {
   title: 'Knowledge base',
   description: 'Plain-language reference pages for every project, specification, and design principle behind Alex Merced’s work in open agentic AI.',
-  keywords: ['agentic AI knowledge base', 'Merced AI', 'Loro', 'MagAgent', 'MagGraph', 'Open Agent Profile', 'Agentic Graph Specification'],
+  keywords: ['agentic AI knowledge base', 'Merced AI', 'Loro', 'MagAgent', 'MagGraph', 'Open Agent Profile', 'Agentic Graph Specification', 'Agent Approval Interchange Specification'],
   alternates: { canonical: '/knowledge-base' },
   openGraph: {
     title: 'Alex Merced AI knowledge base',

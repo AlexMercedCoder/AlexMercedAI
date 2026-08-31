@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   category: 'technology',
   keywords: [
     'Alex Merced', 'agentic AI', 'open source AI', 'Merced AI', 'Loro', 'MagAgent', 'MagGraph',
-    'Agentic Graph Specification', 'AGS', 'Open Agent Profile', 'OAP', 'agent broker', 'agent harness',
+    'Agentic Graph Specification', 'AGS', 'Open Agent Profile', 'OAP', 'Agent Approval Interchange Specification', 'AAIS', 'agent broker', 'agent harness',
     'agent memory', 'Model Context Protocol', 'MCP', 'Agent Skills', 'portable agents', 'agent governance',
     'AI books', 'AI engineering',
   ],
@@ -71,6 +71,7 @@ const structuredData = {
         { name: 'MagGraph', slug: 'maggraph' },
         { name: 'Agentic Graph Specification', slug: 'agentic-graph-specification' },
         { name: 'Open Agent Profile', slug: 'open-agent-profile' },
+        { name: 'Agent Approval Interchange Specification', slug: 'agent-approval-interchange-specification' },
       ].map((entry, index) => ({
         '@type': 'ListItem',
         position: index + 1,

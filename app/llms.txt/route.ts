@@ -35,17 +35,18 @@ ${section('Core thesis', [
   'evidence-backed outcomes.',
 ])}
 ${section('Featured projects', [
-  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.4.0: provider-neutral agent broker over installed harnesses.',
-  '- [Loro](https://github.com/alexmerced-oss/loro) 0.18.0: governed agent harness built on identity, policy, approvals, evidence, and delivered audit.',
-  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.0.0: Python developer agent harness with persistent graph memory, a broad tool surface, and a local run center.',
-  '- [Mag Command Center](https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.1) 1.0.0-rc.1: cross-platform Tauri desktop workspace for MagAgent, with project context and Git, OAP profiles, AGS graph authoring and governed runs, group sessions, tools, and extensions.',
+  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.5.1: provider-neutral agent broker with portable profiles, durable sessions, and UI-presented runtime approvals.',
+  '- [Loro](https://github.com/alexmerced-oss/loro) 0.19.2: governed agent harness with durable AAIS approvals across CLI, web, bots, and graph runs.',
+  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.1.1: Python developer agent harness with graph memory, portable profiles, graph workflows, and reconnectable UI approvals.',
+  '- [Mag Command Center](https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.3) 1.0.0-rc.3: cross-platform Tauri desktop workspace with project context, OAP profiles, AGS graphs, and native approval decisions.',
   '- [MagGraph](https://github.com/AlexMercedCoder/MagGraph) 0.4.1: graph-shaped agent memory stored as Markdown in Git.',
   '',
   'Versions move; check each repository for the current release.',
 ])}
 ${section('Open specifications', [
   '- [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): portable graphs of nodes, edges, tools, policy, and execution intent. Specification 1.0, support libraries 1.0.4.',
-  '- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): portable agent identity, capability, authority, and learned state. Specification 1.0, support libraries 1.0.4.',
+  '- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): portable agent identity, capability, authority, and learned state. Specification 1.0, support libraries 1.0.5.',
+  '- [Agent Approval Interchange Specification](https://github.com/alexmerced-oss/agent-approval-interchange-spec): exact, durable, transport-neutral human approvals. Specification 1.0, support libraries 0.1.0 for Python, TypeScript, Go, Rust, and Java.',
 ])}
 ## Knowledge base
 

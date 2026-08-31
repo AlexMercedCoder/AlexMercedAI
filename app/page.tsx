@@ -7,10 +7,10 @@ import { aiBooks } from './_data/books';
 import { kbManifest } from './_data/kb-manifest';
 
 const projects = [
-  { name: 'Merced AI', slug: 'merced-ai', version: '0.4.0', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker for routing work across agents and model-powered tools.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
-  { name: 'Loro', slug: 'loro', version: '0.18.0', type: 'Governed harness', tone: 'violet', description: 'An agent harness built around explicit authority, policy, evidence, and durable records.', href: 'https://github.com/alexmerced-oss/loro' },
-  { name: 'MagAgent', slug: 'magagent', version: '1.0.0', type: 'Developer harness', tone: 'orange', description: 'A practical Python agent framework for composing providers, tools, memory, and workflows.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
-  { name: 'Mag Command Center', slug: 'magagent', version: '1.0.0-rc.1', type: 'Desktop workspace', tone: 'orange', description: 'A cross-platform desktop cockpit for chats, workspace context, Git, profiles, governed graphs, group sessions, and runtime operations.', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.1' },
+  { name: 'Merced AI', slug: 'merced-ai', version: '0.5.1', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker with portable profiles, durable sessions, and UI-presented runtime approvals.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
+  { name: 'Loro', slug: 'loro', version: '0.19.2', type: 'Governed harness', tone: 'violet', description: 'A governed harness with durable AAIS approvals across CLI, web, bots, and graph runs.', href: 'https://github.com/alexmerced-oss/loro' },
+  { name: 'MagAgent', slug: 'magagent', version: '1.1.1', type: 'Developer harness', tone: 'orange', description: 'A local-first agent harness with portable profiles, graph workflows, and reconnectable UI approvals.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
+  { name: 'Mag Command Center', slug: 'magagent', version: '1.0.0-rc.3', type: 'Desktop workspace', tone: 'orange', description: 'A cross-platform desktop cockpit with project context, graphs, profiles, operations, and native approval decisions.', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.3' },
   { name: 'MagGraph', slug: 'maggraph', version: '0.4.1', type: 'Agent memory', tone: 'green', description: 'A graph-shaped memory layer for representing relationships, context, and retrieval paths.', href: 'https://github.com/AlexMercedCoder/MagGraph' },
 ];
 
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div className="system-card" aria-label="Open agentic system diagram">
           <div className="system-top"><span>OPEN AGENTIC SYSTEM</span><span className="live">● LIVE</span></div>
-          <div className="system-layer contracts"><small>CONTRACTS</small><div><b>AGS</b><b>OAP</b></div></div>
+          <div className="system-layer contracts"><small>CONTRACTS</small><div><b>AGS</b><b>OAP</b><b>AAIS</b></div></div>
           <span className="connector">↓ portable instructions</span>
           <div className="system-layer routing"><small>ROUTING</small><div><b>MER</b><span>Merced AI</span></div></div>
           <span className="connector">↓ governed delegation</span>
@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       <section className="standards" id="standards">
-        <div className="shell standards-grid"><div><p className="section-kicker">OPEN CONTRACTS</p><h2>Standards make ecosystems possible.</h2><p>Open software is strongest when its components share a durable language. These specifications focus on graph-shaped work and portable agent identity.</p><Link className="kb-link" href="/knowledge-base/open-contracts">Read about open contracts →</Link></div><div className="standard-list"><Link href="/knowledge-base/agentic-graph-specification"><span className="standard-mark">AGS</span><div><b>Agentic Graph Specification</b><p>A portable document format for defining nodes, edges, tools, policy, and execution intent.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/open-agent-profile"><span className="standard-mark">OAP</span><div><b>Open Agent Profile</b><p>A vendor-neutral profile for expressing an agent’s identity, capabilities, authority, and preferences.</p></div><span>1.0 →</span></Link></div></div>
+        <div className="shell standards-grid"><div><p className="section-kicker">OPEN CONTRACTS</p><h2>Standards make ecosystems possible.</h2><p>Open software is strongest when components share durable languages for work, identity, and human authorization.</p><Link className="kb-link" href="/knowledge-base/open-contracts">Read about open contracts →</Link></div><div className="standard-list"><Link href="/knowledge-base/agentic-graph-specification"><span className="standard-mark">AGS</span><div><b>Agentic Graph Specification</b><p>Portable graph-shaped work with explicit tools, policy, budgets, and success criteria.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/open-agent-profile"><span className="standard-mark">OAP</span><div><b>Open Agent Profile</b><p>Portable agent identity, capabilities, authority, preferences, and state.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/agent-approval-interchange-specification"><span className="standard-mark">AAIS</span><div><b>Agent Approval Interchange Specification</b><p>Exact, durable approval requests and decisions across CLI, web, desktop, and policy services.</p></div><span>1.0 →</span></Link></div></div>
       </section>
 
       <section className="section shell" id="principles">

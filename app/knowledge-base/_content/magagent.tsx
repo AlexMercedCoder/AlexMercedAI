@@ -30,7 +30,7 @@ export const article: Article = {
     { label: 'MagAgent on GitHub', href: 'https://github.com/AlexMercedCoder/MagAgent', note: 'Source, documentation, and the roadmap toward 1.0.' },
     { label: 'mag-agent on PyPI', href: 'https://pypi.org/project/mag-agent/', note: 'Installation and release history.' },
     { label: 'MagGraph', href: 'https://github.com/AlexMercedCoder/MagGraph', note: 'The graph memory layer underneath.' },
-    { label: 'Download Mag Command Center 1.0.0-rc.1', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.1', note: 'The tested desktop release candidate for Linux, macOS, and Windows.' },
+    { label: 'Download Mag Command Center 1.0.0-rc.3', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.3', note: 'The tested desktop release candidate for Linux, macOS, and Windows.' },
     { label: 'Open Agent Profile', href: 'https://github.com/alexmerced-oss/open-agent-profile', note: 'The profile specification MagAgent implements at Level 3.' },
   ],
   related: ['agent-harnesses', 'maggraph', 'loro'],
@@ -259,7 +259,7 @@ function Body() {
         confirmation on destructive actions and limits on uploads, context, and output size.
       </p>
       <p>
-        <b>Mag Command Center 1.0.0-rc.1</b> packages these operating ideas as a native desktop workspace for Linux,
+        <b>Mag Command Center 1.0.0-rc.3</b> packages these operating ideas as a native desktop workspace for Linux,
         macOS, and Windows. The release candidate adds bounded project context and uploads, Git staging and worktree
         controls, sequential and parallel profile groups, governed schedules, a searchable command palette, tools
         and extension diagnostics, session fork and export, appearance and accessibility controls, and lazy-loaded
@@ -339,7 +339,7 @@ function Body() {
       <ul>
         <li><b>Memory needs curation.</b> A graph that accumulates everything degrades recall. Explicit promotion is the mechanism, and someone has to use it.</li>
         <li><b>Memory is a data store.</b> Whatever the agent learned is written down, including anything sensitive it encountered. Treat the repository accordingly.</li>
-        <li><b>1.0 is recent.</b> MagAgent reached 1.0.0 in August 2026. The interfaces it commits to are settled; the local web UI is the newest surface and the one most likely to keep moving.</li>
+        <li><b>1.1 is recent.</b> MagAgent 1.1.1 adds durable AAIS approval handling across chats, bots, and graph runs; the browser can present decisions without falling back to the terminal.</li>
         <li><b>Shell access is the boundary question.</b> As with any capable harness, running commands means the agent can do what you can, unless sandboxed.</li>
         <li><b>Breadth has a cost.</b> A large tool surface makes tool selection matter. Scope per profile.</li>
         <li><b>Language servers need a working project setup.</b> The symbol tooling is only as good as the project configuration underneath.</li>

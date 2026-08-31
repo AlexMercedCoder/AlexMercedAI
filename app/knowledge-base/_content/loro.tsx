@@ -236,7 +236,7 @@ function Body() {
 
       <h2 id="workspace">The 0.18 workspace and run center</h2>
       <p>
-        Version 0.18.0 closes the main desktop-workspace gaps around the governed runtime, and the framing in the
+        Version 0.19.2 adds durable AAIS approval transport so chat, bot, and graph work can request and receive decisions in the active UI, and the framing in the
         release notes is the interesting part: it does this without turning the web UI into an authority boundary or
         a general-purpose editor.
       </p>
