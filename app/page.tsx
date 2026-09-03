@@ -45,6 +45,17 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="films" id="films">
+        <div className="shell">
+          <div className="films-heading"><p className="section-kicker">WATCH / THREE ORIGINAL FILMS</p><h2>Identity. Agents.<br />Open data.</h2><p>Three scene-rich music videos connect the person, the agentic platform, and the open lakehouse underneath modern AI.</p></div>
+          <div className="film-grid">
+            <article className="film-card"><video controls preload="metadata" playsInline poster="https://alexmerced.com/my-name-is-alex-poster.jpg" aria-label="My Name Is Alex music video"><source src="https://alexmerced.com/my-name-is-alex.mp4" type="video/mp4" /></video><div><span>PERSON / MUSIC VIDEO</span><h3>My Name Is Alex</h3><p>A personal, music-driven introduction to the builder behind the work.</p></div></article>
+            <article className="film-card"><video controls preload="metadata" playsInline poster="https://openagenticplatform.com/open-the-stack-poster.jpg" aria-label="Open the Stack music video"><source src="https://openagenticplatform.com/open-the-stack.mp4" type="video/mp4" /></video><div><span>AGENTS / MUSIC VIDEO</span><h3>Open the Stack</h3><p>Composable agents, inspectable authority, model choice, and portable execution.</p></div></article>
+            <article className="film-card"><video controls preload="metadata" playsInline poster="https://opendatalakehouse.com/the-iceberg-open-lakehouse-poster.jpg" aria-label="The Iceberg Open Lakehouse music video"><source src="https://opendatalakehouse.com/the-iceberg-open-lakehouse.mp4" type="video/mp4" /></video><div><span>DATA / MUSIC VIDEO</span><h3>The Iceberg Open Lakehouse</h3><p>The open data foundation that makes governed analytics and AI possible.</p></div></article>
+          </div>
+        </div>
+      </section>
+
       <section className="manifesto" id="architecture">
         <div className="shell manifesto-grid"><p className="section-kicker">THE THESIS</p><blockquote>“The future of agentic AI is not one model, one agent, or one platform. It is <em>replaceable components</em> connected by open contracts.”</blockquote></div>
       </section>
