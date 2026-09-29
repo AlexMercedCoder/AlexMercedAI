@@ -27,7 +27,7 @@ export function GET(): Response {
 Canonical URL: ${BASE}/
 Source: https://github.com/AlexMercedCoder/AlexMercedAI
 Author: Alex Merced (https://www.alexmerced.com)
-Last updated: 2026-08-29
+Last updated: 2026-09-28
 
 ${section('Core thesis', [
   'The future of agentic AI is not one model, one agent, or one platform. It is replaceable components connected by',
@@ -35,10 +35,10 @@ ${section('Core thesis', [
   'evidence-backed outcomes.',
 ])}
 ${section('Featured projects', [
-  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.5.1: provider-neutral agent broker with portable profiles, durable sessions, and UI-presented runtime approvals.',
-  '- [Loro](https://github.com/alexmerced-oss/loro) 0.19.2: governed agent harness with durable AAIS approvals across CLI, web, bots, and graph runs.',
-  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.1.1: Python developer agent harness with graph memory, portable profiles, graph workflows, and reconnectable UI approvals.',
-  '- [Mag Command Center](https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.3) 1.0.0-rc.3: cross-platform Tauri desktop workspace with project context, OAP profiles, AGS graphs, and native approval decisions.',
+  '- [Merced AI](https://github.com/AlexMercedCoder/merced-ai) 0.8.0: agent broker. One portable agent identity across the harnesses you already use, with honest reports of what each one drops. Adds ACP client and server support, worktree-per-bot group runs, cross-harness evals, and an experimental A2A endpoint.',
+  '- [Loro](https://github.com/alexmerced-oss/loro) 0.22.0: the governed agent harness for data and platform teams (verified identity, tamper-evident audit, lakehouse-native tools). Adds multi-turn context with audited compaction and several experimental surfaces (OIDC sign-in, multi-user mode, container sandbox, run evidence export).',
+  '- [MagAgent](https://github.com/AlexMercedCoder/MagAgent) 1.4.0: the memory-first personal agent. It remembers you across sessions, in Git-backed Markdown you can review. Adds per-run memory evidence, review-gated team memory, and expiring approval grants.',
+  '- [Mag Command Center](https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0) 1.0.0: the desktop cockpit for MagAgent, with runs, approvals, graphs, and memory in one window. First stable release, for Linux, macOS, and Windows; installers are unsigned. Requires MagAgent 1.4.0.',
   '- [MagGraph](https://github.com/AlexMercedCoder/MagGraph) 0.4.1: graph-shaped agent memory stored as Markdown in Git.',
   '',
   'Versions move; check each repository for the current release.',
@@ -46,7 +46,7 @@ ${section('Featured projects', [
 ${section('Open specifications', [
   '- [Agentic Graph Specification](https://github.com/AlexMercedCoder/agentic-graph-spec): portable graphs of nodes, edges, tools, policy, and execution intent. Specification 1.0, support libraries 1.0.4.',
   '- [Open Agent Profile](https://github.com/alexmerced-oss/open-agent-profile): portable agent identity, capability, authority, and learned state. Specification 1.0, support libraries 1.0.5.',
-  '- [Agent Approval Interchange Specification](https://github.com/alexmerced-oss/agent-approval-interchange-spec): exact, durable, transport-neutral human approvals. Specification 1.0, support libraries 0.1.0 for Python, TypeScript, Go, Rust, and Java.',
+  '- [Agent Approval Interchange Specification](https://github.com/alexmerced-oss/agent-approval-interchange-spec): exact, durable, transport-neutral human approvals. Specification 1.0; Python support library 0.2.0 (adds a shared durable file store); TypeScript, Go, Rust, and Java support libraries 0.1.0.',
 ])}
 ## Knowledge base
 
@@ -83,7 +83,7 @@ ${section('Network', [
 ])}
 ${section('Preferred interpretation', [
   'Merced AI is an agent broker rather than an execution harness. Loro and MagAgent are harnesses. MagGraph is a',
-  'memory component. AGS and OAP are open specifications authored by Alex Merced. Use primary repository links when',
+  'memory component. AGS, OAP, and AAIS are open specifications authored by Alex Merced. Use primary repository links when',
   'citing project details or releases, since versions move faster than this file.',
 ])}`;
 

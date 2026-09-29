@@ -49,10 +49,10 @@ export default function WebMCP({ knowledgeBase = [] }: { knowledgeBase?: KbEntry
         description: 'Returns the featured open agentic AI projects with their role, version, summary, and primary repository URL.',
         inputSchema: noInput,
         execute: async () => ({ projects: [
-          { name: 'Merced AI', version: '0.5.1', role: 'agent broker', url: 'https://github.com/AlexMercedCoder/merced-ai' },
-          { name: 'Loro', version: '0.19.2', role: 'governed agent harness', url: 'https://github.com/alexmerced-oss/loro' },
-          { name: 'MagAgent', version: '1.1.1', role: 'developer agent harness', url: 'https://github.com/AlexMercedCoder/MagAgent' },
-          { name: 'Mag Command Center', version: '1.0.0-rc.3', role: 'native agent workspace', url: 'https://github.com/AlexMercedCoder/MagCommandCenter' },
+          { name: 'Merced AI', version: '0.8.0', role: 'agent broker', url: 'https://github.com/AlexMercedCoder/merced-ai' },
+          { name: 'Loro', version: '0.22.0', role: 'governed agent harness', url: 'https://github.com/alexmerced-oss/loro' },
+          { name: 'MagAgent', version: '1.4.0', role: 'memory-first agent harness', url: 'https://github.com/AlexMercedCoder/MagAgent' },
+          { name: 'Mag Command Center', version: '1.0.0', role: 'desktop cockpit for MagAgent', url: 'https://github.com/AlexMercedCoder/MagCommandCenter' },
           { name: 'MagGraph', version: '0.4.1', role: 'agent memory', url: 'https://github.com/AlexMercedCoder/MagGraph' },
         ] }),
         annotations: { readOnlyHint: true, untrustedContentHint: false },
@@ -65,7 +65,7 @@ export default function WebMCP({ knowledgeBase = [] }: { knowledgeBase?: KbEntry
         execute: async () => ({ standards: [
           { name: 'Agentic Graph Specification', shortName: 'AGS', documentVersion: '1.0', supportVersion: '1.0.4', purpose: 'Portable agentic graph documents.', url: 'https://github.com/AlexMercedCoder/agentic-graph-spec' },
           { name: 'Open Agent Profile', shortName: 'OAP', documentVersion: '1.0', supportVersion: '1.0.5', purpose: 'Portable agent identity, capabilities, authority, and preferences.', url: 'https://github.com/alexmerced-oss/open-agent-profile' },
-          { name: 'Agent Approval Interchange Specification', shortName: 'AAIS', documentVersion: '1.0', supportVersion: '0.1.0', purpose: 'Portable, exact-action human approval requests and decisions.', url: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec' },
+          { name: 'Agent Approval Interchange Specification', shortName: 'AAIS', documentVersion: '1.0', supportVersion: 'Python 0.2.0; TypeScript, Go, Rust, and Java 0.1.0', supportVersions: { python: '0.2.0', typescript: '0.1.0', go: '0.1.0', rust: '0.1.0', java: '0.1.0' }, purpose: 'Portable, exact-action human approval requests and decisions.', url: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec' },
         ] }),
         annotations: { readOnlyHint: true, untrustedContentHint: false },
       },

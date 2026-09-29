@@ -7,10 +7,10 @@ import { aiBooks } from './_data/books';
 import { kbManifest } from './_data/kb-manifest';
 
 const projects = [
-  { name: 'Merced AI', slug: 'merced-ai', version: '0.5.1', type: 'Agent broker', tone: 'blue', description: 'A provider-neutral broker with portable profiles, durable sessions, and UI-presented runtime approvals.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
-  { name: 'Loro', slug: 'loro', version: '0.19.2', type: 'Governed harness', tone: 'violet', description: 'A governed harness with durable AAIS approvals across CLI, web, bots, and graph runs.', href: 'https://github.com/alexmerced-oss/loro' },
-  { name: 'MagAgent', slug: 'magagent', version: '1.1.1', type: 'Developer harness', tone: 'orange', description: 'A local-first agent harness with portable profiles, graph workflows, and reconnectable UI approvals.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
-  { name: 'Mag Command Center', slug: 'magagent', version: '1.0.0-rc.3', type: 'Desktop workspace', tone: 'orange', description: 'A cross-platform desktop cockpit with project context, graphs, profiles, operations, and native approval decisions.', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0-rc.3' },
+  { name: 'Merced AI', slug: 'merced-ai', version: '0.8.0', type: 'Agent broker', tone: 'blue', description: 'One portable agent identity across the harnesses you already use, with honest reports of what each one drops.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
+  { name: 'Loro', slug: 'loro', version: '0.22.0', type: 'Governed harness', tone: 'violet', description: 'The governed agent harness for data and platform teams: verified identity, tamper-evident audit, lakehouse-native tools.', href: 'https://github.com/alexmerced-oss/loro' },
+  { name: 'MagAgent', slug: 'magagent', version: '1.4.0', type: 'Memory-first harness', tone: 'orange', description: 'The memory-first personal agent: it remembers you across sessions, in Git-backed Markdown you can review.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
+  { name: 'Mag Command Center', slug: 'magagent', version: '1.0.0', type: 'Desktop workspace', tone: 'orange', description: 'The desktop cockpit for MagAgent: runs, approvals, graphs, and memory in one window.', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0' },
   { name: 'MagGraph', slug: 'maggraph', version: '0.4.1', type: 'Agent memory', tone: 'green', description: 'A graph-shaped memory layer for representing relationships, context, and retrieval paths.', href: 'https://github.com/AlexMercedCoder/MagGraph' },
 ];
 

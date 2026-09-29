@@ -16,11 +16,13 @@ export const article: Article = {
     { id: 'reconnect', label: 'Approvals survive reconnects' },
     { id: 'composition', label: 'How AAIS composes' },
     { id: 'libraries', label: 'Five support libraries' },
+    { id: 'file-store', label: 'A shared store for Python harnesses' },
     { id: 'not', label: 'What it is not' },
   ],
   learnMore: [
     { label: 'AAIS on GitHub', href: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec', note: 'Specification, security model, schemas, conformance fixtures, and five support libraries.' },
     { label: 'AAIS specification', href: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec/blob/main/spec/v1/SPEC.md', note: 'The normative 1.0 protocol contract.' },
+    { label: 'AAIS Python library 0.2.0', href: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec/releases/tag/python/v0.2.0', note: 'The Python release that adds the durable, multi-process file store.' },
     { label: 'AAIS integration guide', href: 'https://github.com/alexmerced-oss/agent-approval-interchange-spec/blob/main/docs/integration.md', note: 'Guidance for harnesses and approval-presenting applications.' },
   ],
   related: ['open-contracts', 'explicit-authority', 'agentic-graph-specification', 'open-agent-profile'],
@@ -31,7 +33,7 @@ function Body() {
   return <>
     <h2 id="what-it-is">What it is</h2>
     <p>AAIS 1.0 is an open, transport-neutral contract for one critical handoff: an agent runtime needs permission to perform an action, and a person must be able to decide from the interface they are actually using. It covers chats, bot sessions, subagents, background jobs, and graph nodes without defining any of those runtimes.</p>
-    <p>The first support release is 0.1.0. Python, TypeScript, Go, Rust, and Java libraries share one conformance corpus and implement validation, RFC 8785 action digests, request and decision creation, replay-safe pending state, and durable snapshots.</p>
+    <p>The first support release was 0.1.0. Python, TypeScript, Go, Rust, and Java libraries share one conformance corpus and implement validation, RFC 8785 action digests, request and decision creation, replay-safe pending state, and durable snapshots. The Python library is now at 0.2.0; the other four remain at 0.1.0, because the language libraries are versioned independently.</p>
 
     <h2 id="boundary">The authority boundary</h2>
     <p>The harness remains the authority. A web or desktop client presents the exact requested action and returns a selected decision; it does not grant itself new capability. Before acting, the harness revalidates the decision against the current request, action digest, expiry, offered choices, and current policy.</p>
@@ -53,9 +55,14 @@ function Body() {
     <p>AGS describes the work and where a graph may require a human gate. OAP describes the agent and the ceiling on its authority. AAIS carries the live request and decision when a specific action reaches that boundary. MCP, AG-UI, HTTP/SSE, WebSocket, and stdio can transport or adapt the messages; none replaces the authority contract.</p>
 
     <h2 id="libraries">Five support libraries</h2>
-    <p>The 0.1.0 packages are published on PyPI, npm, pkg.go.dev, crates.io, and Maven Central. The libraries deliberately share behavior and fixtures so an approval emitted in one language can be verified in another instead of merely having a similar-looking JSON shape.</p>
+    <p>The packages are published on PyPI, npm, pkg.go.dev, crates.io, and Maven Central: Python at 0.2.0, TypeScript, Go, Rust, and Java at 0.1.0. The libraries deliberately share behavior and fixtures so an approval emitted in one language can be verified in another instead of merely having a similar-looking JSON shape.</p>
+
+    <h2 id="file-store">A shared store for Python harnesses</h2>
+    <p>Python library 0.2.0 adds <code>aais.store.FileApprovalStore</code>, a durable approval authority that several processes can share through one JSON file: a web server, a CLI, a background worker, and a stdio bridge can all wait on and resolve the same requests. The specification, schema, and conformance corpus did not change.</p>
+    <p>The store holds a lock for the whole transaction, writes atomically, quarantines a corrupt file instead of reading it as empty, bounds how much resolved history it keeps, and reports an explicit gap when a client asks for events that have been compacted away. Pending requests record their owner as process id, process start time, and host, so a reused process id cannot make a stopped owner look alive. Storage is split from the approval rules, and a conformance kit lets other backends prove the same behavior.</p>
+    <p>Loro 0.22 and MagAgent 1.4 now keep their approvals in this store instead of in their own file handling, and Merced AI 0.8 uses the library&apos;s owner-identity checks for its approval presenter. Loro&apos;s experimental Postgres approval authority is built on the same backend protocols and passes the backend conformance kit.</p>
 
     <h2 id="not">What it is not</h2>
-    <p>AAIS does not define chat, model reasoning, tools, profiles, workflow graphs, authentication, or a network transport. It also does not expose private chain-of-thought. It carries concise activity, provenance, risk, choices, decisions, and receipts—the information a person and a runtime need to authorize safely.</p>
+    <p>AAIS does not define chat, model reasoning, tools, profiles, workflow graphs, authentication, or a network transport. It also does not expose private chain-of-thought. It carries concise activity, provenance, risk, choices, decisions, and receipts: the information a person and a runtime need to authorize safely.</p>
   </>;
 }

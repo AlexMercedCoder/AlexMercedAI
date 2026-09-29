@@ -60,7 +60,7 @@ export default async function KnowledgeBaseArticle({ params }: { params: Promise
         inLanguage: 'en-US',
         isPartOf: { '@type': 'WebSite', '@id': 'https://alexmercedai.com/#website' },
         author: { '@id': 'https://alexmercedai.com/#alex-merced' },
-        dateModified: '2026-08-28',
+        dateModified: '2026-09-28',
         keywords: article.keywords.join(', '),
       },
       {

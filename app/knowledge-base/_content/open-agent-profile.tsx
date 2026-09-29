@@ -205,7 +205,9 @@ function Body() {
         Canonical digests deserve their own note. Because a profile can be written in more than one encoding with
         fields in any order, comparing two profiles textually is unreliable. A canonical digest gives a stable
         identifier for the content regardless of formatting, which is what lets you say the profile running in
-        production is exactly the one that was approved.
+        production is exactly the one that was approved. That only works if every implementation computes it the same
+        way, and as of Loro 0.22, Loro, MagAgent, and Merced AI all compute profile digests over the document as
+        authored, matching the reference library.
       </p>
       <p>
         For harnesses without native support, the repository ships two Agent Skills that let a harness load a

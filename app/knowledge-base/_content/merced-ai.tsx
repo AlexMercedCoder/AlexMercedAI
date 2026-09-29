@@ -6,7 +6,7 @@ export const article: Article = {
   kind: 'technology',
   layer: 'agent-brokers',
   kicker: 'PROJECT / BROKER',
-  summary: 'A local-first broker that finds the agent harnesses already installed on your machine and runs portable profiles across them.',
+  summary: 'A local-first broker that carries one portable agent identity across the harnesses you already use, with honest reports of what each one drops.',
   standfirst: 'Merced AI is deliberately not another agent loop. It discovers what you already have, normalizes how those tools are invoked, and uses Open Agent Profile documents to create bots that run on whichever harness is available. The selected harness still owns everything about execution.',
   keywords: ['Merced AI', 'agent broker', 'harness discovery', 'portable bots', 'Open Agent Profile', 'local-first', 'multi-agent conversation'],
   sections: [
@@ -19,6 +19,7 @@ export const article: Article = {
     { id: 'planning', label: 'Read-only graph planning' },
     { id: 'conversations', label: 'Sessions and group conversations' },
     { id: 'run-inspection', label: 'Workspace context and run inspection' },
+    { id: 'recent', label: 'What 0.6 through 0.8 added' },
     { id: 'workflow', label: 'What using it looks like' },
     { id: 'when', label: 'When it earns its place' },
     { id: 'limits', label: 'Limits and honest caveats' },
@@ -26,6 +27,7 @@ export const article: Article = {
   ],
   learnMore: [
     { label: 'Merced AI on GitHub', href: 'https://github.com/AlexMercedCoder/merced-ai', note: 'Source, installation guide, and the harness compatibility documentation.' },
+    { label: 'Merced AI 0.8.0 release', href: 'https://github.com/AlexMercedCoder/merced-ai/releases/tag/v0.8.0', note: 'Release notes for the current version, including behavior changes and MagAgent and Loro compatibility.' },
     { label: 'merced-ai on PyPI', href: 'https://pypi.org/project/merced-ai/', note: 'Installation and release history.' },
     { label: 'Open Agent Profile', href: 'https://github.com/alexmerced-oss/open-agent-profile', note: 'The specification that makes a bot portable between harnesses.' },
     { label: 'Agentic Graph Specification', href: 'https://github.com/AlexMercedCoder/agentic-graph-spec', note: 'The plan format Merced AI validates and plans without executing.' },
@@ -146,6 +148,13 @@ function Body() {
         anything runs.
       </p>
       <p>
+        Version 0.8 made the report stricter in two ways. It now lists every profile section a projection drops,
+        such as MCP servers, skills, tool allow and deny lists, and memory stores, and names any marked required;
+        before, a rich profile on a limited harness could look like it lost only its role and permissions. And each
+        harness descriptor now separates what the harness supports from what the broker actually implements for it,
+        showing only the second as supported.
+      </p>
+      <p>
         My first version did not do this. It projected as best it could and ran. That is the tempting design because
         it always works, and it is dangerous in a specific way: a profile declaring a tool denylist would run on a
         harness that ignores denylists, and I would believe a boundary existed that did not. The tool had
@@ -207,8 +216,8 @@ function Body() {
 
       <h2 id="run-inspection">Workspace context and run inspection</h2>
       <p>
-        Version 0.5.1 adds durable approval-aware sessions and the UI lifecycle a broker needs once people route real work through it: a way to
-        hand the target harness the right context, and a way to see what came back.
+        Version 0.5 added durable approval-aware sessions and the UI lifecycle a broker needs once people route real
+        work through it: a way to hand the target harness the right context, and a way to see what came back.
       </p>
       <p>
         The workspace context picker handles text, binary, and image context through bounded browser uploads, with
@@ -228,6 +237,33 @@ function Body() {
         because the harness reports completion and the caller has no way to know a step failed inside. Surfacing it
         as a distinct state rather than folding it into success or failure is a small correctness win that shows up
         constantly in practice.
+      </p>
+
+      <h2 id="recent">What 0.6 through 0.8 added</h2>
+      <p>
+        Version 0.6 made WebMCP a routing requirement: a bot can declare that it needs browser-native tools, and
+        routing fails over past harnesses that cannot provide them instead of silently losing the capability. Version
+        0.7 made runs belong to the broker, with reconnect by run id, recovery of interrupted runs, and cancellation
+        that ends the whole process group rather than only the direct child.
+      </p>
+      <p>
+        Version 0.8 is where the broker learned to speak more of the protocols harnesses already speak, without
+        growing a loop of its own.
+      </p>
+      <ul>
+        <li><b>Agent Client Protocol.</b> Claude Code, Gemini CLI, Goose, and OpenCode run as ACP agents when their launchers are installed: replies stream, permission requests go through the AAIS approval dialog or a terminal prompt, and Claude Code, Goose, and OpenCode resume their own sessions. In the other direction, <code>merced-ai acp</code> serves a bot or a room to editors such as Zed. The harness still does the work either way.</li>
+        <li><b>Worktree rooms.</b> In a group conversation, each write-capable bot can get its own Git worktree, so they work concurrently without touching your files. You compare their changes, apply one bot&apos;s patch only if it applies cleanly, and discard the rest. Without worktrees, write-capable bots sharing a workspace now take turns.</li>
+        <li><b>Cross-harness evals.</b> One profile and prompt on several harnesses, with deterministic checks scored first and an optional judge&apos;s opinion reported separately.</li>
+        <li><b>A reviewed state inbox.</b> Open Agent Profile state changes are validated on arrival and applied only after approval. It implements the Level 2 applicator requirements, and the claimed conformance level stays at 1.</li>
+        <li><b>Terminal approvals.</b> When MagAgent, Loro, or an ACP agent asks for approval during a command-line run, Merced AI shows the exact request and takes one key, with Deny as the default. Before this, those requests were denied silently.</li>
+        <li><b>Adapter plugins.</b> Every built-in adapter now goes through a public plugin API, and installed packages can add adapters, checked by a contract-test kit.</li>
+        <li><b>Smaller changes.</b> Prompts go to most harnesses through stdin or a private file instead of the command line, profile discovery also reads Loro&apos;s <code>.loro/agents/</code> directory, and the web UI now defaults to port 8773 so it no longer collides with Loro&apos;s.</li>
+        <li><b>Experimental.</b> An A2A endpoint on the UI server, behind the same loopback binding and token.</li>
+      </ul>
+      <p>
+        A security self-review of the new surfaces led to fixes around worktree paths, symbolic links in applied
+        patches, plugins loaded from the working directory, and DNS rebinding against the UI server. It was written
+        by the same authors, not an independent audit.
       </p>
 
       <h2 id="workflow">What using it looks like</h2>
@@ -290,6 +326,7 @@ function Body() {
         <li><b>Harness interfaces move.</b> Discovery tracks versions because an upgrade can change a non-interactive interface underneath you.</li>
         <li><b>You need at least one harness installed and authenticated.</b> Inventory and dry runs work without model access; real runs do not.</li>
         <li><b>Profile state is data an agent wrote.</b> Review it rather than trusting it, especially when a profile moves between environments.</li>
+        <li><b>The protocol work is young.</b> The A2A endpoint is experimental, and ACP support was verified for four harnesses; others are opt-in and unverified.</li>
         <li><b>It is local-first by design.</b> It discovers what is on the machine. It does not manage remote infrastructure, and I do not currently intend it to.</li>
       </ul>
 

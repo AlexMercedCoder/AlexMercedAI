@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   publisher: 'Alex Merced',
   category: 'technology',
   keywords: [
-    'Alex Merced', 'agentic AI', 'open source AI', 'Merced AI', 'Loro', 'MagAgent', 'MagGraph',
+    'Alex Merced', 'agentic AI', 'open source AI', 'Merced AI', 'Loro', 'MagAgent', 'Mag Command Center', 'MagGraph',
     'Agentic Graph Specification', 'AGS', 'Open Agent Profile', 'OAP', 'Agent Approval Interchange Specification', 'AAIS', 'agent broker', 'agent harness',
     'agent memory', 'Model Context Protocol', 'MCP', 'Agent Skills', 'portable agents', 'agent governance',
     'AI books', 'AI engineering',
@@ -63,7 +63,7 @@ const structuredData = {
       '@type': 'ItemList',
       '@id': `${BASE}/#projects`,
       name: 'Alex Merced open agentic AI projects',
-      numberOfItems: 6,
+      numberOfItems: 7,
       itemListElement: [
         { name: 'Merced AI', slug: 'merced-ai' },
         { name: 'Loro', slug: 'loro' },

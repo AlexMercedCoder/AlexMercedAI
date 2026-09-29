@@ -21,6 +21,7 @@ export const article: Article = {
     { id: 'artifacts', label: 'Artifacts with provenance' },
     { id: 'standards', label: 'Standards, adopted carefully' },
     { id: 'workspace', label: 'The 0.18 workspace and run center' },
+    { id: 'recent', label: 'What 0.20 through 0.22 added' },
     { id: 'gateways', label: 'Gateways widen the perimeter' },
     { id: 'who-for', label: 'Who this is for' },
     { id: 'limits', label: 'Limits and honest caveats' },
@@ -29,6 +30,7 @@ export const article: Article = {
   learnMore: [
     { label: 'Loro on GitHub', href: 'https://github.com/alexmerced-oss/loro', note: 'Source, documentation, and the project status page describing exactly what is stable and what is pre-1.0.' },
     { label: 'loro-agent on PyPI', href: 'https://pypi.org/project/loro-agent/', note: 'Installation, extras for data, cloud, MCP, gateway, and web UI.' },
+    { label: 'Loro 0.22.0 release', href: 'https://github.com/alexmerced-oss/loro/releases/tag/v0.22.0', note: 'Release notes for the current version, including which new surfaces are experimental.' },
     { label: 'Apache Polaris', href: 'https://polaris.apache.org', note: 'The open catalog Loro reads governed table metadata from.' },
     { label: 'Apache Iceberg', href: 'https://iceberg.apache.org', note: 'The table format behind governed shared memory.' },
     { label: 'Open Agent Profile', href: 'https://github.com/alexmerced-oss/open-agent-profile', note: 'The profile specification Loro implements with fail-closed narrowing.' },
@@ -99,6 +101,13 @@ function Body() {
         That is a governance hole no prompt discipline closes, and it is invisible until someone looks. Carrying a
         real principal through the run means permission checks and audit records both refer to a person, which also
         makes the trail readable by people outside the engineering team.
+      </p>
+      <p>
+        Since 0.22 the identity can also be verified rather than asserted. Loro checks OpenID Connect tokens itself
+        (discovery, cached signing keys, signature, issuer, audience, and expiry), marks an identity as verified only
+        when a token passed those checks, and can fail closed when a verified identity is required. The web UI gains
+        a sign-in flow in the same mode. This is experimental, and it was tested against a mock identity provider
+        rather than a public one.
       </p>
 
       <h2 id="policy">Policy over normalized resources</h2>
@@ -236,9 +245,10 @@ function Body() {
 
       <h2 id="workspace">The 0.18 workspace and run center</h2>
       <p>
-        Version 0.19.2 adds durable AAIS approval transport so chat, bot, and graph work can request and receive decisions in the active UI, and the framing in the
-        release notes is the interesting part: it does this without turning the web UI into an authority boundary or
-        a general-purpose editor.
+        Version 0.18 added a workspace and run center to the local web UI, and 0.19.2 added durable AAIS approval
+        transport so chat, bot, and graph work can request and receive decisions there. The framing in the release
+        notes is the interesting part: it does this without turning the web UI into an authority boundary or a
+        general-purpose editor.
       </p>
       <p>
         That constraint is doing real work. The temptation with a local UI is to let it read anything, run anything,
@@ -263,6 +273,38 @@ function Body() {
         There is also an effective inventory of MCP servers, protocol extensions, and skills, with no credential
         disclosure, and adjacent-project discovery with copyable per-project launch commands. Both are answers to
         the same question a governed system should be able to answer on demand: what is actually configured here.
+      </p>
+
+      <h2 id="recent">What 0.20 through 0.22 added</h2>
+      <p>
+        Version 0.20 made WebMCP a first-class governed capability: Loro discovers tools that web pages register, but only from
+        an explicit allowlist of exact HTTPS origins, with browser state isolated per origin and calls bound to the
+        registry revision they were reviewed against. Version 0.21 let an approval decided in one local client wake
+        the run that asked for it in another, and added a graph recovery report that shows which nodes completed,
+        which are waiting, and which have uncertain effects, without restarting anything on its own.
+      </p>
+      <p>
+        Version 0.22 adds a lot at once, and the honest way to describe it is to separate what is supported from
+        what is experimental.
+      </p>
+      <ul>
+        <li><b>Multi-turn context.</b> Resumed sessions and web conversations send earlier turns to the model as real messages. When history outgrows its budget, the oldest turns are compacted into a deterministic summary, without a model call, and the compaction is written to the audit log.</li>
+        <li><b>Shared approval store.</b> Approvals now use the AAIS 0.2 file store, so a reused process id cannot make a dead run look alive, and a corrupt state file is quarantined until someone acknowledges it.</li>
+        <li><b>Canonical profile digests.</b> Loro now computes Open Agent Profile digests the same way as the reference library, MagAgent, and Merced AI. Older digests are migrated, and each migration is audited.</li>
+        <li><b>Graphs refuse what Loro cannot run.</b> A graph node that names an executor extension Loro does not implement is refused at validation, planning, and run time, unless an operator explicitly opts in, instead of quietly running as an ordinary model task.</li>
+        <li><b>Promoted to supported.</b> The local web UI in its loopback, single-user mode, and Loro&apos;s MCP server at protocol revision 2025-11-25.</li>
+        <li><b>Experimental.</b> Per-run evidence bundles (<code>loro run export</code> and <code>loro run verify</code>), OIDC sign-in, a multi-user mode with role-based access and a Postgres approval authority, a Docker or Podman container sandbox, command hooks and plugins, OpenTelemetry traces with audit forwarding to a SIEM as OCSF or CEF, and policy-gated coding tools for applying patches, running tests, and fetching allowlisted web pages.</li>
+      </ul>
+      <p>
+        The evidence bundle is the one I would point at, because it is the question this harness was built to answer,
+        packaged. One run&apos;s hash-verified audit slice, its approval receipts, its configuration and profile
+        digests, and its tool calls go into one archive, and verification fails if any byte was altered. It is still
+        experimental, but it turns &ldquo;what did this run do&rdquo; into a file you can hand to someone.
+      </p>
+      <p>
+        The release also extends the threat model to every new surface. That review found and fixed eleven issues,
+        each with a regression test. It is a self-review by the engineer who built the features, not a penetration
+        test, and the project says so.
       </p>
 
       <h2 id="gateways">Gateways widen the perimeter</h2>
@@ -313,7 +355,8 @@ function Body() {
       <h2 id="limits">Limits and honest caveats</h2>
       <ul>
         <li><b>Governance has setup cost.</b> Identity, approvals, audit, sandbox, and memory each need configuring. The setup wizards reduce it and do not remove it.</li>
-        <li><b>Read the project status document.</b> Loro maintains a deliberately limited stable core with a larger set of surfaces at varying stages. Do not assume uniform maturity.</li>
+        <li><b>Read the project status document.</b> Loro maintains a deliberately limited stable core with a larger set of surfaces at varying stages. Do not assume uniform maturity. Many of the 0.22 additions, including OIDC, multi-user mode, the container sandbox, and plugins, are experimental.</li>
+        <li><b>It has not been independently audited.</b> The threat model is a self-review, not a penetration test. The project&apos;s general availability checklist lists the pen test, pilot, and support gates only others can meet.</li>
         <li><b>Shared memory writes are awkward on purpose.</b> Draft gating is friction by design.</li>
         <li><b>Audit needs a destination and monitoring.</b> Configuring delivery and never checking it produces false confidence.</li>
         <li><b>Sandbox enforcement varies by platform.</b> Verify what is actually active rather than what is configured.</li>
