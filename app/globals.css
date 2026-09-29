@@ -66,6 +66,8 @@ blockquote em { color:var(--yellow); }
 .card-meta { display:flex; justify-content:space-between; font:10px var(--mono); letter-spacing:.12em; }
 .project-card h3 { margin:42px 0 14px; font:900 42px var(--display); text-transform:uppercase; }
 .project-card p { max-width:440px; color:#3f424a; line-height:1.55; }
+.project-links { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.2rem; font-weight:700; }
+.project-links a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
 .card-link { position:absolute; bottom:28px; font-size:12px; font-weight:800; }
 .blue { background:#dfe7ff; }.violet{background:#e9e0ff}.orange{background:#ffe5cf}.green{background:#daf0df}
 .standards { background:#e5dfd3; border-block:1px solid var(--line); padding-block:100px; }

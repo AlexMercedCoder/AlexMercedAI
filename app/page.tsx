@@ -62,7 +62,7 @@ export default function Home() {
 
       <section className="section shell" id="work">
         <div className="section-heading"><div><p className="section-kicker">SELECTED OPEN WORK</p><h2>Building the parts.<br />Defining the seams.</h2></div><p>Projects spanning brokerage, execution, memory, governance, and interoperability. Each one has a full explainer in the <Link href="/knowledge-base">knowledge base</Link>.</p></div>
-        <div className="project-grid">{projects.map((project) => <Link className={`project-card ${project.tone}`} href={`/knowledge-base/${project.slug}`} key={project.name}><div className="card-meta"><span>{project.type}</span><span>v{project.version}</span></div><h3>{project.name}</h3><p>{project.description}</p><span className="card-link">Read the explainer →</span></Link>)}</div>
+        <div className="project-grid">{projects.map((project) => <article className={`project-card ${project.tone}`} key={project.name}><div className="card-meta"><span>{project.type}</span><span>v{project.version}</span></div><h3>{project.name}</h3><p>{project.description}</p><p><strong>Status:</strong> {project.version.startsWith('0.') ? 'Pre-1.0 public release' : 'Public release'}</p><div className="project-links"><Link href={`/knowledge-base/${project.slug}`}>Read the explainer →</Link><a href={project.href}>Source, setup, and releases ↗</a></div></article>)}</div>
       </section>
 
       <section className="standards" id="standards">
