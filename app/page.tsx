@@ -3,16 +3,10 @@ import Image from 'next/image';
 import WebMCP from './WebMCP';
 import { SiteHeader } from './_components/SiteHeader';
 import { NewsletterBand, SiteFooter } from './_components/SiteFooter';
-import { aiBooks } from './_data/books';
+import { aiBooks, bookPage } from './_data/books';
+import { installCommand, projects, registryUrl, repoUrl, starsBadge, versionBadge } from './_data/projects';
+import { resolveProjects, type ResolvedProject } from './_lib/registry';
 import { kbManifest } from './_data/kb-manifest';
-
-const projects = [
-  { name: 'Merced AI', slug: 'merced-ai', version: '0.8.0', type: 'Agent broker', tone: 'blue', description: 'One portable agent identity across the harnesses you already use, with honest reports of what each one drops.', href: 'https://github.com/AlexMercedCoder/merced-ai' },
-  { name: 'Loro', slug: 'loro', version: '0.22.0', type: 'Governed harness', tone: 'violet', description: 'The governed agent harness for data and platform teams: verified identity, tamper-evident audit, lakehouse-native tools.', href: 'https://github.com/alexmerced-oss/loro' },
-  { name: 'MagAgent', slug: 'magagent', version: '1.4.0', type: 'Memory-first harness', tone: 'orange', description: 'The memory-first personal agent: it remembers you across sessions, in Git-backed Markdown you can review.', href: 'https://github.com/AlexMercedCoder/MagAgent' },
-  { name: 'Mag Command Center', slug: 'magagent', version: '1.0.0', type: 'Desktop workspace', tone: 'orange', description: 'The desktop cockpit for MagAgent: runs, approvals, graphs, and memory in one window.', href: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/tag/v1.0.0' },
-  { name: 'MagGraph', slug: 'maggraph', version: '0.4.1', type: 'Agent memory', tone: 'green', description: 'A graph-shaped memory layer for representing relationships, context, and retrieval paths.', href: 'https://github.com/AlexMercedCoder/MagGraph' },
-];
 
 const principles: [string, string, string, string][] = [
   ['01', 'Portable by default', 'Agents, profiles, and workflows should move without being rebuilt around a single vendor.', 'portable-by-default'],
@@ -21,7 +15,83 @@ const principles: [string, string, string, string][] = [
   ['04', 'Claims need evidence', 'Useful autonomy comes from traceable decisions, observable work, and verifiable outcomes.', 'claims-need-evidence'],
 ];
 
-export default function Home() {
+const SPDX: Record<string, string[]> = {
+  'Apache-2.0': ['https://spdx.org/licenses/Apache-2.0.html'],
+  MIT: ['https://spdx.org/licenses/MIT.html'],
+  'MIT OR Apache-2.0': ['https://spdx.org/licenses/MIT.html', 'https://spdx.org/licenses/Apache-2.0.html'],
+};
+
+const registryName = { pypi: 'PyPI', npm: 'npm' } as const;
+
+function softwareSchema(resolved: ResolvedProject[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': resolved.map((project) => {
+      const version = project.releaseTag ? project.releaseTag.replace(/^v/, '') : project.versions[0];
+      const license = project.license ? SPDX[project.license] : undefined;
+      return {
+        '@type': 'SoftwareSourceCode',
+        '@id': `https://alexmercedai.com/#software-${project.repo.toLowerCase()}`,
+        name: project.name,
+        description: project.description,
+        url: `https://alexmercedai.com/knowledge-base/${project.slug}`,
+        codeRepository: repoUrl(project),
+        programmingLanguage: project.languages,
+        ...(license ? { license: license.length === 1 ? license[0] : license } : {}),
+        ...(version ? { softwareVersion: version } : {}),
+        author: { '@id': 'https://alexmerced.com/#alexmerced' },
+      };
+    }),
+  };
+}
+
+function ProjectCard({ project }: { project: ResolvedProject }) {
+  const firstVersion = project.releaseTag ? project.releaseTag.replace(/^v/, '') : project.versions[0];
+  return (
+    <article className={`project-card ${project.tone}`}>
+      <div className="card-meta"><span>{project.type}</span><span>github.com/{project.owner}</span></div>
+      <h3>{project.name}</h3>
+      <p>{project.description}</p>
+      {project.specVersion ? (
+        <p className="version-line"><strong>Specification:</strong> {project.specVersion}. <strong>Support libraries:</strong> {project.installs.map((target, index) => `${registryName[target.registry]} ${project.versions[index]}`).join(', ')}.</p>
+      ) : null}
+      {project.installs.length ? (
+        <ul className="install-list">
+          {project.installs.map((target, index) => (
+            <li key={`${target.registry}-${target.pkg}`}>
+              <code>{installCommand(target)}</code>
+              <a href={registryUrl(target)} rel="noopener" className="badge-link" aria-label={`${target.pkg} ${project.versions[index]} on ${registryName[target.registry]}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={versionBadge(target)} alt={`${registryName[target.registry]} version`} height={20} loading="lazy" />
+              </a>
+              <span className="install-version">{registryName[target.registry]} {project.versions[index]}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {project.releases ? (
+        <p className="version-line"><strong>Install:</strong> desktop app for macOS, Windows, and Linux, not published to npm. Latest release {project.releaseTag}: <a href={project.releases.url} rel="noopener">download from GitHub releases ↗</a></p>
+      ) : null}
+      <div className="badge-row">
+        <a href={repoUrl(project)} rel="noopener" className="badge-link" aria-label={`${project.owner}/${project.repo} on GitHub`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={starsBadge(project)} alt="GitHub stars" height={20} loading="lazy" />
+        </a>
+        {project.license ? <span className="license">License: {project.license}</span> : null}
+        {!project.specVersion && firstVersion ? <span className="license">Status: {firstVersion.startsWith('0.') ? 'pre-1.0 public release' : 'public release'}</span> : null}
+      </div>
+      <div className="project-links"><Link href={`/knowledge-base/${project.slug}`}>Read the explainer →</Link><a href={repoUrl(project)} rel="noopener">Source on GitHub ↗</a></div>
+    </article>
+  );
+}
+
+export default async function Home() {
+  const resolved = await resolveProjects(projects);
+  const tools = resolved.filter((project) => project.kind !== 'spec');
+  const specs = resolved.filter((project) => project.kind === 'spec');
+  const personal = resolved.filter((project) => project.owner === 'AlexMercedCoder').map((project) => project.name.replace(/ \(.*\)$/, ''));
+  const org = resolved.filter((project) => project.owner === 'alexmerced-oss').map((project) => project.name.replace(/ \(.*\)$/, ''));
+  const list = (names: string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}` : names[0]);
   return (
     <main>
       <WebMCP knowledgeBase={kbManifest} />
@@ -30,9 +100,10 @@ export default function Home() {
       <section className="hero shell" id="top">
         <div className="hero-copy">
           <p className="eyebrow"><span /> Alex Merced on agentic AI</p>
-          <h1>AI should be open<br />to <em>inspection.</em></h1>
+          <h1 className="hero-title">Open-source agent tools and specs by <em>Alex Merced</em></h1>
+          <p className="hero-subline">AI should be open to inspection.</p>
           <p className="lede">I build open tools, specifications, and ideas for agentic systems that people can understand, govern, and move.</p>
-          <div className="actions"><a className="button primary" href="#work">Explore the work ↓</a><Link className="button text" href="/knowledge-base">Read the knowledge base →</Link></div>
+          <div className="actions"><a className="button primary" href="#work">Install the tools ↓</a><Link className="button text" href="/knowledge-base">Read the knowledge base →</Link></div>
         </div>
         <div className="system-card" aria-label="Open agentic system diagram">
           <div className="system-top"><span>OPEN AGENTIC SYSTEM</span><span className="live">● LIVE</span></div>
@@ -61,12 +132,26 @@ export default function Home() {
       </section>
 
       <section className="section shell" id="work">
-        <div className="section-heading"><div><p className="section-kicker">SELECTED OPEN WORK</p><h2>Building the parts.<br />Defining the seams.</h2></div><p>Projects spanning brokerage, execution, memory, governance, and interoperability. Each one has a full explainer in the <Link href="/knowledge-base">knowledge base</Link>.</p></div>
-        <div className="project-grid">{projects.map((project) => <article className={`project-card ${project.tone}`} key={project.name}><div className="card-meta"><span>{project.type}</span><span>v{project.version}</span></div><h3>{project.name}</h3><p>{project.description}</p><p><strong>Status:</strong> {project.version.startsWith('0.') ? 'Pre-1.0 public release' : 'Public release'}</p><div className="project-links"><Link href={`/knowledge-base/${project.slug}`}>Read the explainer →</Link><a href={project.href}>Source, setup, and releases ↗</a></div></article>)}</div>
+        <div className="section-heading"><div><p className="section-kicker">INSTALL AND RUN</p><h2>Building the parts.<br />Defining the seams.</h2></div><p>Tools for brokerage, execution, memory, and governance. Every card shows the real package name, the version on the registry when this site was built, the license, and where the source lives. Each one has a full explainer in the <Link href="/knowledge-base">knowledge base</Link>.</p></div>
+        <div className="project-grid">{tools.map((project) => <ProjectCard project={project} key={project.name} />)}</div>
+      </section>
+
+      <section className="section shell" id="specs">
+        <div className="section-heading"><div><p className="section-kicker">OPEN SPECIFICATIONS</p><h2>Contracts you<br />can install.</h2></div><p>Each specification has two version numbers: the version of the specification document, and the version of the support libraries that parse and validate it. The document changes rarely. The libraries release more often.</p></div>
+        <div className="project-grid">{specs.map((project) => <ProjectCard project={project} key={project.name} />)}</div>
+      </section>
+
+      <section className="section shell github-split" id="github">
+        <div className="section-heading compact"><div><p className="section-kicker">WHERE THE CODE LIVES</p><h2>Two GitHub homes.</h2></div></div>
+        <div className="split-grid">
+          <article><h3><a href="https://github.com/AlexMercedCoder" rel="noopener">github.com/AlexMercedCoder ↗</a></h3><p>Alex&rsquo;s personal account since 2019. It holds hundreds of older projects, learning repos, and experiments. It is also home to {list(personal)}.</p></article>
+          <article><h3><a href="https://github.com/alexmerced-oss" rel="noopener">github.com/alexmerced-oss ↗</a></h3><p>A separate GitHub organization for open-source agent tools and specs, kept apart from the personal account. It holds {list(org)}.</p></article>
+        </div>
+        <p className="split-note">The cards above name the owner of each repository, so every install badge and stars count points at the right place.</p>
       </section>
 
       <section className="standards" id="standards">
-        <div className="shell standards-grid"><div><p className="section-kicker">OPEN CONTRACTS</p><h2>Standards make ecosystems possible.</h2><p>Open software is strongest when components share durable languages for work, identity, and human authorization.</p><Link className="kb-link" href="/knowledge-base/open-contracts">Read about open contracts →</Link></div><div className="standard-list"><Link href="/knowledge-base/agentic-graph-specification"><span className="standard-mark">AGS</span><div><b>Agentic Graph Specification</b><p>Portable graph-shaped work with explicit tools, policy, budgets, and success criteria.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/open-agent-profile"><span className="standard-mark">OAP</span><div><b>Open Agent Profile</b><p>Portable agent identity, capabilities, authority, preferences, and state.</p></div><span>1.0 →</span></Link><Link href="/knowledge-base/agent-approval-interchange-specification"><span className="standard-mark">AAIS</span><div><b>Agent Approval Interchange Specification</b><p>Exact, durable approval requests and decisions across CLI, web, desktop, and policy services.</p></div><span>1.0 →</span></Link></div></div>
+        <div className="shell standards-grid"><div><p className="section-kicker">OPEN CONTRACTS</p><h2>Standards make ecosystems possible.</h2><p>Open software is strongest when components share durable languages for work, identity, and human authorization.</p><Link className="kb-link" href="/knowledge-base/open-contracts">Read about open contracts →</Link></div><div className="standard-list"><Link href="/knowledge-base/agentic-graph-specification"><span className="standard-mark">AGS</span><div><b>Agentic Graph Specification</b><p>Portable graph-shaped work with explicit tools, policy, budgets, and success criteria.</p></div><span>SPEC 1.0 →</span></Link><Link href="/knowledge-base/open-agent-profile"><span className="standard-mark">OAP</span><div><b>Open Agent Profile</b><p>Portable agent identity, capabilities, authority, preferences, and state.</p></div><span>SPEC 1.0 →</span></Link><Link href="/knowledge-base/agent-approval-interchange-specification"><span className="standard-mark">AAIS</span><div><b>Agent Approval Interchange Specification</b><p>Exact, durable approval requests and decisions across CLI, web, desktop, and policy services.</p></div><span>SPEC 1.0 RC →</span></Link></div></div>
       </section>
 
       <section className="section shell" id="principles">
@@ -83,10 +168,11 @@ export default function Home() {
           <div className="book-shelf" role="list" aria-label="AI books by Alex Merced">
             {aiBooks.map((book, index) => (
               <article className="book-card" role="listitem" key={book.title}>
-                <a href={book.href} rel="noopener">
+                <a href={bookPage(book)} rel="noopener">
                   <div className="book-cover"><Image src={book.cover} alt={`Cover of ${book.title}`} width={350} height={500} sizes="(max-width: 520px) 220px, 260px" /><span>{String(index + 1).padStart(2, '0')}</span></div>
-                  <div className="book-copy"><h3>{book.title}</h3><p>{book.description}</p><b>View book ↗</b></div>
+                  <div className="book-copy"><h3>{book.title}</h3><p>{book.description}</p><b>About the book ↗</b></div>
                 </a>
+                <a className="book-buy" href={book.amazon} rel="noopener" data-network-event="book_amazon_click">Buy on Amazon ↗</a>
               </article>
             ))}
           </div>
@@ -94,10 +180,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about" id="about"><div className="shell about-grid"><div className="portrait">AM</div><div><p className="section-kicker">ABOUT ALEX</p><h2>Builder, educator,<br />open-systems advocate.</h2><p>Alex Merced works across data infrastructure, developer education, and agentic AI. His focus is making complex systems legible, and giving builders open foundations they can adapt, audit, and own.</p><div className="about-links"><a href="https://www.alexmerced.com">AlexMerced.com ↗</a><a href="https://openagenticplatform.com">OpenAgenticPlatform.com ↗</a><a href="https://www.alexmerceddata.com">Data work ↗</a><a href="https://www.alexmercedcoder.dev">Developer work ↗</a></div></div></div></section>
+      <section className="about" id="about"><div className="shell about-grid"><div className="portrait">AM</div><div><p className="section-kicker">ABOUT ALEX</p><h2>Builder, educator,<br />open-systems advocate.</h2><p>Alex Merced works across data infrastructure, developer education, and agentic AI. His focus is making complex systems legible, and giving builders open foundations they can adapt, audit, and own.</p><div className="about-links"><a href="https://alexmerced.com">AlexMerced.com ↗</a><a href="https://openagenticplatform.com">OpenAgenticPlatform.com ↗</a><a href="https://www.alexmerceddata.com">Data work ↗</a><a href="https://www.alexmercedcoder.dev">Developer work ↗</a></div></div></div></section>
 
       <NewsletterBand />
       <SiteFooter />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema(resolved)) }} />
     </main>
   );
 }

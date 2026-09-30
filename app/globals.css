@@ -256,3 +256,48 @@ a:focus-visible,button:focus-visible { outline:3px solid var(--blue); outline-of
   .menu-toggle { padding:12px; }
 }
 @media (prefers-reduced-motion:reduce) { .menu-bars i { transition:none; } }
+
+/* Hero: the H1 states the job; the old line survives as a subline */
+.hero-title { font-size:clamp(46px,5.2vw,78px); line-height:.9; }
+.hero-subline { margin:0 0 14px; font:700 13px var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--blue); }
+
+/* Install-first project cards (P6.2) */
+.project-card:nth-child(n+3) { border-bottom:1px solid var(--ink); }
+.project-card:nth-last-child(-n+2):nth-child(odd),.project-card:last-child { border-bottom:0; }
+.project-card h3 { margin-top:30px; }
+.version-line { font-size:14px; }
+.version-line a { text-decoration:underline; text-underline-offset:3px; font-weight:700; }
+.install-list { list-style:none; margin:16px 0 0; padding:0; display:grid; gap:10px; }
+.install-list li { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.install-list code { padding:8px 11px; background:var(--ink); color:#f4f0e8; font:13px var(--mono); border-radius:3px; user-select:all; }
+.install-version { font:11px var(--mono); color:var(--muted); }
+.badge-row { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:16px; font:11px var(--mono); color:var(--muted); }
+.badge-link { display:inline-flex; line-height:0; }
+.badge-link img { height:20px; width:auto; }
+#specs { padding-top:0; }
+
+/* GitHub split */
+.split-grid { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--ink); }
+.split-grid article { padding:28px 30px; }
+.split-grid article:first-child { border-right:1px solid var(--ink); }
+.split-grid h3 { margin:0 0 12px; font:900 24px var(--display); text-transform:none; }
+.split-grid h3 a { text-decoration:underline; text-underline-offset:4px; }
+.split-grid p { margin:0; color:#3f424a; line-height:1.6; }
+.split-note { margin-top:16px; color:var(--muted); font-size:14px; }
+@media (max-width:800px) { .split-grid { grid-template-columns:1fr; } .split-grid article:first-child { border-right:0; border-bottom:1px solid var(--ink); } .project-card:nth-last-child(-n+2):nth-child(odd) { border-bottom:1px solid var(--ink); } }
+
+/* Network CTA strip (content from network/network.json) */
+.network-cta { background:var(--yellow); color:var(--ink); border-top:1px solid var(--ink); }
+.network-cta-inner { display:grid; grid-template-columns:250px 1fr; gap:40px; align-items:center; padding-block:34px; }
+.network-cta-title { margin:0; font:900 30px/1 var(--display); text-transform:uppercase; letter-spacing:-.02em; }
+.network-cta ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:14px; }
+.network-cta a { display:inline-block; padding:13px 16px; background:var(--cream); border:1px solid var(--ink); box-shadow:4px 4px 0 var(--ink); font:800 11px var(--mono); letter-spacing:.04em; }
+.network-cta a:hover,.network-cta a:focus-visible { background:#fff; }
+@media (max-width:800px) { .network-cta-inner { grid-template-columns:1fr; gap:18px; } }
+.footer-columns { align-items:start; }
+
+/* Book cards: book page link plus a separate Amazon link */
+.book-card { display:flex; flex-direction:column; }
+.book-card>a:first-child { height:auto; flex:1; }
+.book-card>a.book-buy { display:block; height:auto; flex:none; padding:12px 20px 16px; border-top:1px solid var(--line); font:800 10px var(--mono); letter-spacing:.04em; }
+.book-card>a.book-buy:hover,.book-card>a.book-buy:focus-visible { background:#fff; text-decoration:underline; }
