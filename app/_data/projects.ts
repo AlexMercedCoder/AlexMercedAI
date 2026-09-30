@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     name: 'Loro', slug: 'loro', kind: 'tool', type: 'Governed harness', tone: 'violet',
     description: 'The governed agent harness for data and platform teams: verified identity, tamper-evident audit, lakehouse-native tools.',
-    owner: 'alexmerced-oss', repo: 'loro', languages: ['Python'], license: 'MIT',
+    owner: 'alexmerced-oss', repo: 'loro', languages: ['Python'], license: 'Apache-2.0',
     installs: [{ registry: 'pypi', pkg: 'loro-agent', fallbackVersion: '0.22.0' }],
   },
   {
@@ -50,7 +50,7 @@ export const projects: Project[] = [
   {
     name: 'Mag Command Center', slug: 'magagent', kind: 'desktop', type: 'Desktop app', tone: 'orange',
     description: 'The desktop cockpit for MagAgent: runs, approvals, graphs, and memory in one window.',
-    owner: 'AlexMercedCoder', repo: 'MagCommandCenter', languages: ['TypeScript', 'Rust'], license: null,
+    owner: 'AlexMercedCoder', repo: 'MagCommandCenter', languages: ['TypeScript', 'Rust'], license: 'Apache-2.0',
     installs: [],
     releases: { url: 'https://github.com/AlexMercedCoder/MagCommandCenter/releases/latest', fallbackTag: 'v1.0.0' },
   },
