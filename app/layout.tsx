@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { articles } from './knowledge-base/_content';
-import { aiBooks, bookPage } from './_data/books';
 import { getNetwork, getNetworkHeadScripts } from './_lib/network';
 
 const network = getNetwork();
@@ -12,8 +10,8 @@ const BASE = 'https://alexmercedai.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
-  title: { default: 'Open-source agent tools and specs by Alex Merced | Alex Merced AI', template: '%s | Alex Merced AI' },
-  description: 'Open-source agent tools and specs by Alex Merced: Merced AI, Loro, MagAgent, MagGraph, Mag Command Center, AGS, OAP, and AAIS, with install commands, versions, licenses, and a knowledge base for each.',
+  title: { default: 'Open-source agent tools and specs | Alex Merced AI', template: '%s | Alex Merced AI' },
+  description: 'Open-source agent tools and specs by Alex Merced: Merced AI, Loro, MagAgent, MagGraph, Mag Command Center, AGS, OAP, and AAIS, with installs and versions.',
   applicationName: 'Alex Merced AI',
   authors: [{ name: 'Alex Merced', url: 'https://alexmerced.com' }],
   creator: 'Alex Merced',
@@ -46,65 +44,7 @@ const structuredData = {
       inLanguage: 'en-US',
       author: ALEX,
       publisher: ALEX,
-      hasPart: { '@id': `${BASE}/knowledge-base#collection` },
-    },
-    {
-      '@type': 'ItemList',
-      '@id': `${BASE}/#projects`,
-      name: 'Alex Merced open agentic AI projects',
-      numberOfItems: 7,
-      itemListElement: [
-        { name: 'Merced AI', slug: 'merced-ai' },
-        { name: 'Loro', slug: 'loro' },
-        { name: 'MagAgent', slug: 'magagent' },
-        { name: 'MagGraph', slug: 'maggraph' },
-        { name: 'Agentic Graph Specification', slug: 'agentic-graph-specification' },
-        { name: 'Open Agent Profile', slug: 'open-agent-profile' },
-        { name: 'Agent Approval Interchange Specification', slug: 'agent-approval-interchange-specification' },
-      ].map((entry, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: entry.name,
-        url: `${BASE}/knowledge-base/${entry.slug}`,
-      })),
-    },
-    {
-      '@type': 'CollectionPage',
-      '@id': `${BASE}/knowledge-base#collection`,
-      name: 'Alex Merced AI knowledge base',
-      url: `${BASE}/knowledge-base`,
-      description: `Reference pages covering every project, specification, and design principle behind this work. ${articles.length} articles.`,
-      isPartOf: { '@id': `${BASE}/#website` },
-      inLanguage: 'en-US',
-      author: ALEX,
-      mainEntity: {
-        '@type': 'ItemList',
-        name: 'Knowledge base articles',
-        numberOfItems: articles.length,
-        itemListElement: articles.map((entry, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: entry.title,
-          url: `${BASE}/knowledge-base/${entry.slug}`,
-        })),
-      },
-    },
-    {
-      '@type': 'ItemList',
-      '@id': `${BASE}/#books`,
-      name: 'AI and agentic systems books by Alex Merced',
-      numberOfItems: aiBooks.length,
-      itemListElement: aiBooks.map((book, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'Book',
-          name: book.title,
-          description: book.description,
-          url: bookPage(book),
-          author: ALEX,
-        },
-      })),
+      hasPart: { '@id': `${BASE}/knowledge-base#page` },
     },
   ],
 };

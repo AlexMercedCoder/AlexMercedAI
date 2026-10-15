@@ -7,6 +7,7 @@ export const article: Article = {
   layer: null,
   kicker: 'CATEGORY / EXECUTION',
   summary: 'The software that actually runs an agent: the loop, the tools, the state, the limits, and the record of what happened.',
+  description: "An agent harness is the software that runs an agent: the loop, tools, state, limits, and record of what happened. Why it matters more than the model itself.",
   standfirst: 'A model produces text. A harness turns that into work. Almost everything that separates a demonstration from a system you would run against real infrastructure lives here, and almost none of it is about the model.',
   keywords: ['agent harness', 'agent runtime', 'agent loop', 'tool execution', 'agent limits', 'agent state', 'agent policy'],
   sections: [

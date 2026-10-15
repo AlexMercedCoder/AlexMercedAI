@@ -23,10 +23,54 @@ const SPDX: Record<string, string[]> = {
 
 const registryName = { pypi: 'PyPI', npm: 'npm' } as const;
 
+const BASE = 'https://alexmercedai.com';
+const ALEX = { '@id': 'https://alexmerced.com/#alexmerced' };
+
+// Homepage-only nodes (they used to repeat on every page from the root layout).
+const homeNodes = [
+  {
+    '@type': 'ItemList',
+    '@id': `${BASE}/#projects`,
+    name: 'Alex Merced open agentic AI projects',
+    numberOfItems: 7,
+    itemListElement: [
+      { name: 'Merced AI', slug: 'merced-ai' },
+      { name: 'Loro', slug: 'loro' },
+      { name: 'MagAgent', slug: 'magagent' },
+      { name: 'MagGraph', slug: 'maggraph' },
+      { name: 'Agentic Graph Specification', slug: 'agentic-graph-specification' },
+      { name: 'Open Agent Profile', slug: 'open-agent-profile' },
+      { name: 'Agent Approval Interchange Specification', slug: 'agent-approval-interchange-specification' },
+    ].map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.name,
+      url: `${BASE}/knowledge-base/${entry.slug}`,
+    })),
+  },
+  {
+    '@type': 'ItemList',
+    '@id': `${BASE}/#books`,
+    name: 'AI and agentic systems books by Alex Merced',
+    numberOfItems: aiBooks.length,
+    itemListElement: aiBooks.map((book, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Book',
+        name: book.title,
+        description: book.description,
+        url: bookPage(book),
+        author: ALEX,
+      },
+    })),
+  },
+];
+
 function softwareSchema(resolved: ResolvedProject[]) {
   return {
     '@context': 'https://schema.org',
-    '@graph': resolved.map((project) => {
+    '@graph': [...homeNodes, ...resolved.map((project) => {
       const version = project.releaseTag ? project.releaseTag.replace(/^v/, '') : project.versions[0];
       const license = project.license ? SPDX[project.license] : undefined;
       return {
@@ -41,7 +85,7 @@ function softwareSchema(resolved: ResolvedProject[]) {
         ...(version ? { softwareVersion: version } : {}),
         author: { '@id': 'https://alexmerced.com/#alexmerced' },
       };
-    }),
+    })],
   };
 }
 

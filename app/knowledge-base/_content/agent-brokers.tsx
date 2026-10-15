@@ -7,6 +7,7 @@ export const article: Article = {
   layer: null,
   kicker: 'CATEGORY / ROUTING',
   summary: 'The component that decides which agent or harness should handle a piece of work, without running the work itself.',
+  description: "An agent broker decides which agent or harness handles a piece of work, under whose authority and budget, without running the work itself. When you need one.",
   standfirst: 'A broker is the piece most people skip, because it does nothing visible. It runs no agent loop and executes no tools. It decides where work goes, under whose authority, with what budget, and it is the reason a system with several harnesses does not become several systems.',
   keywords: ['agent broker', 'agent routing', 'multi-harness', 'agent orchestration', 'harness discovery', 'portable bots'],
   sections: [

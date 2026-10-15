@@ -7,6 +7,7 @@ export const article: Article = {
   layer: null,
   kicker: 'CATEGORY / INTEROPERABILITY',
   summary: 'The specifications that let agent definitions, capability, and plans move between runtimes instead of being rebuilt.',
+  description: "Open contracts are the specifications that let agent definitions, capabilities, and plans move between runtimes instead of being rebuilt for each tool.",
   standfirst: 'Every agentic system defines what an agent is, what it knows how to do, what it can reach, and what shape a piece of work takes. The only question is whether those definitions belong to your organization or to whichever tool you adopted first.',
   keywords: ['open contracts', 'agent standards', 'AGS', 'OAP', 'Agent Skills', 'MCP', 'interoperability', 'portable agents'],
   sections: [
